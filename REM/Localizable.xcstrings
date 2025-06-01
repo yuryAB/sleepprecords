@@ -188,6 +188,924 @@
         }
       }
     },
+    "experience.label.auditoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auditory hallucination"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alucinação auditiva"
+          }
+        }
+      }
+    },
+    "experience.label.beingPulled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Being pulled"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de ser puxado"
+          }
+        }
+      }
+    },
+    "experience.label.bodyPressure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Body pressure"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pressão no corpo"
+          }
+        }
+      }
+    },
+    "experience.label.calm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calm"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calmo"
+          }
+        }
+      }
+    },
+    "experience.label.compression" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compression"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compressão"
+          }
+        }
+      }
+    },
+    "experience.label.crawlingBiting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crawling / biting"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rastejando / mordendo"
+          }
+        }
+      }
+    },
+    "experience.label.drowningSinking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drowning / sinking"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afogamento / afundando"
+          }
+        }
+      }
+    },
+    "experience.label.externalObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "External obstruction"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obstrução externa"
+          }
+        }
+      }
+    },
+    "experience.label.externalTouch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "External touch"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque externo"
+          }
+        }
+      }
+    },
+    "experience.label.falling" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falling"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caindo"
+          }
+        }
+      }
+    },
+    "experience.label.falsePresence" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "False presence"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presença falsa"
+          }
+        }
+      }
+    },
+    "experience.label.floating" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Floating"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flutuando"
+          }
+        }
+      }
+    },
+    "experience.label.gustatoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gustatory hallucination"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alucinação gustativa"
+          }
+        }
+      }
+    },
+    "experience.label.helplessness" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Helplessness"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desamparo"
+          }
+        }
+      }
+    },
+    "experience.label.musclePain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muscle pain"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dor muscular"
+          }
+        }
+      }
+    },
+    "experience.label.nasalObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nasal obstruction"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obstrução nasal"
+          }
+        }
+      }
+    },
+    "experience.label.olfactoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Olfactory hallucination"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alucinação olfativa"
+          }
+        }
+      }
+    },
+    "experience.label.oralObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oral obstruction"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obstrução oral"
+          }
+        }
+      }
+    },
+    "experience.label.outOfBodyExperience" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Out of body experience"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experiência fora do corpo"
+          }
+        }
+      }
+    },
+    "experience.label.palpitation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palpitation"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palpitação"
+          }
+        }
+      }
+    },
+    "experience.label.panic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panic"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pânico"
+          }
+        }
+      }
+    },
+    "experience.label.proprioceptiveDistortion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proprioceptive distortion"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distorção proprioceptiva"
+          }
+        }
+      }
+    },
+    "experience.label.thermalSensation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thermal sensation"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação térmica"
+          }
+        }
+      }
+    },
+    "experience.label.throatTightness" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Throat tightness"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aperto na garganta"
+          }
+        }
+      }
+    },
+    "experience.label.timeDistortion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time distortion"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distorção do tempo"
+          }
+        }
+      }
+    },
+    "experience.label.tingling" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tingling"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formigamento"
+          }
+        }
+      }
+    },
+    "experience.label.visualHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visual hallucination"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alucinação visual"
+          }
+        }
+      }
+    },
+    "experience.description.auditoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hearing sounds, voices, or noises that aren’t really there."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvir sons, vozes ou ruídos que não existem de fato."
+          }
+        }
+      }
+    },
+    "experience.description.beingPulled" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensation of feeling dragged or pulled by an unseen force."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de estar sendo arrastado ou puxado por uma força invisível."
+          }
+        }
+      }
+    },
+    "experience.description.bodyPressure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling a heavy weight or pressure pressing down on your body."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de um peso intenso pressionando o corpo."
+          }
+        }
+      }
+    },
+    "experience.description.calm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An unusual sense of peace and tranquility despite paralysis."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação incomum de paz e tranquilidade mesmo durante a paralisia."
+          }
+        }
+      }
+    },
+    "experience.description.compression" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling as if your torso or chest is being tightly squeezed or bound."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que o tórax ou o corpo está sendo apertado ou amarrado com força."
+          }
+        }
+      }
+    },
+    "experience.description.externalObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Difficulty breathing because an object (e.g., pillow, blanket) seems to cover or press on you."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dificuldade para respirar porque um objeto (por ex., travesseiro, coberta) parece cobrir ou pressionar você."
+          }
+        }
+      }
+    },
+    "experience.description.externalTouch" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling as if someone or something is touching or pressing on your skin."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que algo ou alguém está tocando ou pressionando sua pele."
+          }
+        }
+      }
+    },
+    "experience.description.falling" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudden feeling of dropping or falling, despite lying still."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação súbita de cair ou despencar, mesmo estando imóvel."
+          }
+        }
+      }
+    },
+    "experience.description.floating" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensation of rising or levitating above the bed."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de levantar ou flutuar sobre a cama."
+          }
+        }
+      }
+    },
+    "experience.description.helplessness" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overwhelming feeling of being powerless or unable to move."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação avassaladora de estar sem poder ou incapaz de se mover."
+          }
+        }
+      }
+    },
+    "experience.description.tingling" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pins-and-needles or tingling sensation in arms, legs, or other body parts."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de formigamento ou “alfinetadas” nos braços, pernas ou outras partes do corpo."
+          }
+        }
+      }
+    },
+    "experience.description.musclePain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Involuntary muscle contractions or discomfort in limbs or torso."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contrações musculares involuntárias ou desconforto em membros ou tronco."
+          }
+        }
+      }
+    },
+    "experience.description.nasalObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inability to breathe through the nose due to a feeling of blockage."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibilidade de respirar pelo nariz devido à sensação de bloqueio."
+          }
+        }
+      }
+    },
+    "experience.description.oralObstruction" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inability to breathe through the mouth because it feels closed or blocked."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibilidade de respirar pela boca porque parece fechada ou bloqueada."
+          }
+        }
+      }
+    },
+    "experience.description.palpitation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensation of rapid, fluttering, or irregular heartbeat."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de batimento cardíaco rápido, acelerado ou irregular."
+          }
+        }
+      }
+    },
+    "experience.description.panic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudden wave of extreme fear or anxiety, often overwhelming."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onda súbita de medo ou ansiedade extrema, geralmente avassaladora."
+          }
+        }
+      }
+    },
+    "experience.description.falsePresence" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perception that someone or something is in the room, even if not visible."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percepção de que alguém ou algo está no quarto, mesmo sem evidência visível."
+          }
+        }
+      }
+    },
+    "experience.description.throatTightness" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensation of constriction or pressure in the throat, as if it is closing."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de constrição ou pressão na garganta, como se estivesse fechando."
+          }
+        }
+      }
+    },
+    "experience.description.timeDistortion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling that time is slowing down, speeding up, or stopping."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que o tempo está passando mais devagar, mais rápido ou parou."
+          }
+        }
+      }
+    },
+    "experience.description.visualHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seeing figures, shadows, objects, or movements that are not actually there."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver figuras, sombras, objetos ou movimentos que não existem na realidade."
+          }
+        }
+      }
+    },
+    "experience.description.crawlingBiting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling as if insects are crawling on your skin or biting you."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que insetos estão rastejando na pele ou mordendo você."
+          }
+        }
+      }
+    },
+    "experience.description.drowningSinking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling as though you are sinking underwater or being pulled down, making it hard to breathe."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que você está se afundando na água ou sendo puxado para baixo, dificultando a respiração."
+          }
+        }
+      }
+    },
+    "experience.description.proprioceptiveDistortion" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { 
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perception that your limbs or body are unnaturally larger, smaller, or out of place."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percepção de que seus membros ou corpo estão exageradamente maiores, menores ou fora de lugar."
+          }
+        }
+      }
+    },
+    "experience.description.olfactoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smelling odors that have no real source in the environment."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentir cheiros que não têm fonte real no ambiente."
+          }
+        }
+      }
+    },
+    "experience.description.gustatoryHallucination" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasting flavors or sensations in the mouth that aren’t actually present."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentir sabores ou sensações na boca que não estão realmente presentes."
+          }
+        }
+      }
+    },
+    "experience.description.thermalSensation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling sudden heat or cold on the skin without a real temperature change."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sentir calor ou frio intenso na pele sem mudança real de temperatura."
+          }
+        }
+      }
+    },
+    "experience.description.outOfBodyExperience" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sense that your consciousness or perspective is floating outside your physical body."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensação de que sua consciência ou perspectiva está flutuando fora do corpo físico."
+          }
+        }
+      }
+    },
     "Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful." : {
       "localizations" : {
         "pt-BR" : {

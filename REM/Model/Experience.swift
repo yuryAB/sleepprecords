@@ -13,26 +13,38 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
     case bodyPressure
     case calm
     case compression
-    case visualHallucination
+    case externalObstruction
+    case externalTouch
+    case falling
+    case floating
+    case helplessness
+    case tingling
+    case musclePain
     case nasalObstruction
     case oralObstruction
-    case externalObstruction
-    case throatTightness
-    case panic
-    case helplessness
-    case floating
-    case falling
-    case externalTouch
     case palpitation
-    case senseOfPresence
+    case panic
+    case falsePresence
+    case throatTightness
     case timeDistortion
-    case limbTingling
-    case musclePain
-    
+    case visualHallucination
+    case crawlingBiting
+    case drowningSinking
+    case proprioceptiveDistortion
+    case olfactoryHallucination
+    case gustatoryHallucination
+    case thermalSensation
+    case outOfBodyExperience
+ 
     var id: String { self.rawValue }
     
     var label: String {
-        let key = "Experience.\(rawValue).label"
+        let key = "experience.label.\(rawValue)"
+        return key.localizable
+    }
+    
+    var description: String {
+        let key = "experience.description.\(rawValue)"
         return key.localizable
     }
     
@@ -54,15 +66,17 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
         case .bodyPressure: "🏋️"
         case .compression: "🪢"
         case .palpitation: "❤️‍🔥"
-        case .senseOfPresence: "👻"
+        case .falsePresence: "👻"
         case .timeDistortion: "⏳"
-        case .limbTingling: "🦶"
+        case .tingling: "🦶"
         case .musclePain: "🤕"
+        case .crawlingBiting: "🐜"
+        case .drowningSinking: "🌊"
+        case .proprioceptiveDistortion: "🔄"
+        case .olfactoryHallucination: "👃"
+        case .gustatoryHallucination: "👅"
+        case .thermalSensation: "🌡️"
+        case .outOfBodyExperience: "🌌"
         }
-    }
-    
-    var description: String {
-        let key = "Experience.\(rawValue).description"
-        return key.localizable
     }
 }
