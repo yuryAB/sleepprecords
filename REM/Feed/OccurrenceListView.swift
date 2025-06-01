@@ -33,7 +33,7 @@ struct OccurrenceListView: View {
         let occurrences = groupedByMonth[monthComponents] ?? []
         let dateString = monthDate.formatted(.dateTime.month(.abbreviated).year())
         let title = occurrences.count >= 2
-        ? "\(occurrences.count) " + "occurrences on".localizable + " \(dateString)"
+        ? "\(occurrences.count) " + "records on".localizable + " \(dateString)"
         : dateString
         return Text(title)
     }
