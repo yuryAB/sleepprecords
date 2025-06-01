@@ -12,7 +12,7 @@ import SwiftData
 struct REMApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Occurrence.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct REMApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FeedView()
         }
         .modelContainer(sharedModelContainer)
     }
