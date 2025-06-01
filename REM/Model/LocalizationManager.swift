@@ -15,7 +15,7 @@ final class LocalizationManager {
 
     static var currentLanguage: SupportedLanguage {
         guard let code = Locale.current.language.languageCode?.identifier,
-              let language = SupportedLanguage(rawValue: code) else {
+              let _ = SupportedLanguage(rawValue: code) else {
             return .english
         }
         

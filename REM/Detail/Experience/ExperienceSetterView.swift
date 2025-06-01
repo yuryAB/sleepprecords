@@ -16,7 +16,7 @@ struct ExperienceSetterView: View {
             HStack {
                 Text(
                     selectedExperiences.isEmpty
-                    ? "If you want, select any experiences you had."
+                    ? "If you feel comfortable and remember, feel free to select the experiences you went through."
                     : "Your Experiences"
                 )
                 .font(.subheadline)

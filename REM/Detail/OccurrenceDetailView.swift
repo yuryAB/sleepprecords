@@ -43,7 +43,7 @@ struct OccurrenceDetailView: View {
 
     var body: some View {
         Form {
-            Section("Date and Time") {
+            Section("Date and time") {
                 DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
                     Label("", systemImage: "clock")
                         .foregroundStyle(.primary)
@@ -60,7 +60,7 @@ struct OccurrenceDetailView: View {
                         .labelsHidden()
                         .tint(.awake)
                 },
-                footer: Text("You can define a specific name for this occurrence.")
+                footer: Text("You can define a specific name for this record.")
                     .font(.footnote)
             ) {
                 TextField("Name", text: $name)
@@ -71,7 +71,7 @@ struct OccurrenceDetailView: View {
             Section("Note") {
                 ZStack(alignment: .topLeading) {
                     if note.isEmpty {
-                        Text("Feel free to detail what happened to you.")
+                        Text("Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful.")
                             .foregroundColor(.secondary)
                             .padding(8)
                     }
@@ -91,7 +91,7 @@ struct OccurrenceDetailView: View {
             Section {
                 HStack {
                     Spacer()
-                    Button("Delete Occurrence", role: .destructive) {
+                    Button("Delete record", role: .destructive) {
                         showDeleteConfirmation = true
                     }
                     Spacer()
@@ -115,14 +115,16 @@ struct OccurrenceDetailView: View {
             },
             including: .none
         )
-        .alert("Delete this occurrence?", isPresented: $showDeleteConfirmation) {
+        .alert("Delete record?", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
                 viewModel.deleteOccurrence(occurrence, context: context)
                 dismiss()
             }
+        } message: {
+            Text("This action cannot be undone.")
         }
-        .navigationTitle("Edit Occurrence")
+        .navigationTitle("Edit Record")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {

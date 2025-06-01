@@ -40,13 +40,20 @@ struct FeedView: View {
     
     var nonOccurrenceNotice: some View {
         VStack(spacing: 12) {
-            Text("No occurrences recorded.")
+            Text("No records yet.")
                 .font(.title3)
+                .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-            Text("When an occurrence happens, swipe to record it.")
+
+            Text("When you've experienced a sleep paralysis episode, swipe to log it.")
                 .font(.body)
-                .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
+                .foregroundColor(.primary)
+
+            Text("If you have notes made outside the app, create a new record and later edit details like the date.")
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
         }
         .padding(30)
     }

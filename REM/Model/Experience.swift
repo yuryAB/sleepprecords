@@ -8,21 +8,21 @@
 import Foundation
 
 enum Experience: String, Codable, CaseIterable, Identifiable {
-    case visualHallucination
     case auditoryHallucination
+    case beingPulled
+    case bodyPressure
+    case calm
+    case compression
+    case visualHallucination
     case nasalObstruction
     case oralObstruction
     case externalObstruction
     case throatTightness
     case panic
     case helplessness
-    case calm
     case floating
     case falling
-    case beingPulled
     case externalTouch
-    case bodyPressure
-    case constriction
     case palpitation
     case senseOfPresence
     case timeDistortion
@@ -52,7 +52,7 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
         case .beingPulled: "🧲"
         case .externalTouch: "✋"
         case .bodyPressure: "🏋️"
-        case .constriction: "🪢"
+        case .compression: "🪢"
         case .palpitation: "❤️‍🔥"
         case .senseOfPresence: "👻"
         case .timeDistortion: "⏳"

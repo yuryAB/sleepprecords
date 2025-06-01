@@ -75,8 +75,4 @@ struct FeedOptions: View {
     var notificationsSubMenu: some View {
         Label("Notifications", systemImage: "bell")
     }
-    
-    var namingSubMenu: some View {
-        Label("Naming", systemImage: "tag")
-    }
 }

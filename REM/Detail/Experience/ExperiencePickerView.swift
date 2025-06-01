@@ -14,7 +14,7 @@ struct ExperiencePickerView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("What experiences did you have at that moment?")
+                Text("Do you remember experiencing any of these at that moment?")
                     .font(.subheadline)
                     .fontWeight(.bold)
                     .foregroundColor(.secondary)
