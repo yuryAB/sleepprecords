@@ -1,5 +1,5 @@
 //
-//  OccurrenceDetailView.swift
+//  RecordDetailView.swift
 //  REM
 //
 //  Created by yury antony on 23/05/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OccurrenceDetailView: View {
+struct RecordDetailView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     

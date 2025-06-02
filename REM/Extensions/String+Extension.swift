@@ -7,7 +7,7 @@
 import Foundation
 
 extension String {
-    var localizable: String {
+    var localized: String {
         return Bundle.main.localizedString(forKey: self, value: nil, table: nil)
     }
 }

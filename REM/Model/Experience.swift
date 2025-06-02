@@ -40,12 +40,12 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
     
     var label: String {
         let key = "experience.label.\(rawValue)"
-        return key.localizable
+        return key.localized
     }
     
     var description: String {
         let key = "experience.description.\(rawValue)"
-        return key.localizable
+        return key.localized
     }
     
     var emoji: String {

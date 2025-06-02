@@ -33,7 +33,7 @@ struct RecordListView: View {
         let occurrences = groupedByMonth[monthComponents] ?? []
         let dateString = monthDate.formatted(.dateTime.month(.abbreviated).year())
         let title = occurrences.count >= 2
-        ? "\(occurrences.count) " + "records on".localizable + " \(dateString)"
+        ? "\(occurrences.count) " + "records on".localized + " \(dateString)"
         : dateString
         return Text(title)
     }
@@ -41,7 +41,7 @@ struct RecordListView: View {
     @ViewBuilder
     private func row(for occurrence: Occurrence) -> some View {
         NavigationLink {
-            OccurrenceDetailView(occurrence: occurrence)
+            RecordDetailView(occurrence: occurrence)
         } label: {
             VStack(alignment: .leading) {
                 Text(viewModel.formattedRecordName(from: occurrence) ?? occurrence.name)
