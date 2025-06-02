@@ -1,5 +1,5 @@
 //
-//  OccurrenceListView.swift
+//  RecordListView.swift
 //  REM
 //
 //  Created by yury antony on 23/05/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct OccurrenceListView: View {
+struct RecordListView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var viewModel: FeedViewModel
     
@@ -44,9 +44,9 @@ struct OccurrenceListView: View {
             OccurrenceDetailView(occurrence: occurrence)
         } label: {
             VStack(alignment: .leading) {
-                Text(occurrence.name)
+                Text(viewModel.formattedRecordName(from: occurrence) ?? occurrence.name)
                     .font(.headline)
-                Text(occurrence.date.formatted(date: .numeric, time: .shortened))
+                Text(viewModel.formattedDateTime(for: occurrence.date))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }

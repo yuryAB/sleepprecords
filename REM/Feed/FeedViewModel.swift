@@ -29,7 +29,7 @@ final class FeedViewModel: ObservableObject {
     }
     
     func getOccurrenceName(for date: Date = Date()) -> String {
-        OccurrenceNameManager.generateOccurrenceName(for: date)
+        RecordNameManager.generateRecordName(for: date)
     }
     
     func deleteOccurrence(_ occurrence: Occurrence, context: ModelContext) {
@@ -71,5 +71,26 @@ final class FeedViewModel: ObservableObject {
             
             addOccurrence(context: context, date: date)
         }
+    }
+    
+    func formattedDateTime(for date: Date) -> String {
+        let locale: Locale
+        switch LocalizationManager.currentLanguage {
+        case .portuguese:
+            locale = Locale(identifier: "pt_BR")
+        case .english:
+            locale = Locale(identifier: "en_US")
+        }
+
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+
+        return formatter.string(from: date)
+    }
+    
+    func formattedRecordName(from occurence: Occurrence) -> String? {
+        return RecordNameManager.generateRecordDisplayName(for: occurence)
     }
 }

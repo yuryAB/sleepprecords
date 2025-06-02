@@ -8,18 +8,23 @@
 import Foundation
 
 final class LocalizationManager {
-    enum SupportedLanguage: String, CaseIterable {
-        case english = "en"
-        case portuguese = "pt"
+    enum SupportedLanguage: CaseIterable {
+        case english
+        case portuguese
     }
 
     static var currentLanguage: SupportedLanguage {
-        guard let code = Locale.current.language.languageCode?.identifier,
-              let _ = SupportedLanguage(rawValue: code) else {
+        guard let preferredLanguage = Locale.preferredLanguages.first?.lowercased() else {
             return .english
         }
-        
-        return SupportedLanguage(rawValue: code) ?? .english
+
+        if preferredLanguage.starts(with: "pt-br") {
+            return .portuguese
+        } else if preferredLanguage.starts(with: "en-us") {
+            return .english
+        } else {
+            return .english
+        }
     }
 
     static func perform<T>(for language: SupportedLanguage, block: () -> T) -> T? {

@@ -25,24 +25,23 @@ struct AddButton: View {
     private var backgroundView: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white.opacity(0.16))
+                .fill(Color.grayREM)
             
             HStack(spacing: 45) {
+                
                 ForEach(0..<5, id: \.self) { _ in
                     ChevronRight()
-                        .frame(width: 15, height: 25)
-                        .foregroundColor(Color.black.opacity(0.25))
+                        .frame(width: 15, height: 23)
+                        .foregroundColor(Color.grayREM)
                 }
             }
             .frame(maxWidth: .infinity)
             .shimmering(
-                active: true,
-                duration: 3,
-                delay: 1.0,
-                gradientColors: [
-                    .white,
-                    .dormant,
-                    .awake
+                duration: 2,
+                delay: 4.0,
+                gradientColors:[
+                    .awake,
+                    .dormant
                 ],
                 angle: 0,
                 direction: .horizontal,
@@ -51,7 +50,7 @@ struct AddButton: View {
             
             Text("Swipe to record")
                 .font(.subheadline)
-                .fontWeight(.bold)
+                .fontWeight(.heavy)
                 .foregroundColor(.primary)
         }
         .frame(height: 56)
@@ -66,7 +65,7 @@ struct AddButton: View {
                         Color.awake,
                         Color.dormant]),
                     center: .leading,
-                    startRadius: -20,
+                    startRadius: -30,
                     endRadius: 60
                 )
             )
@@ -105,7 +104,7 @@ struct AddButton: View {
 struct ChevronRight: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        let lineWidth: CGFloat = min(rect.width, rect.height) * 0.2
+        let lineWidth: CGFloat = min(rect.width, rect.height) * 0.3
         
         path.move(to: CGPoint(x: rect.minX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))

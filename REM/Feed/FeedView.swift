@@ -18,7 +18,7 @@ struct FeedView: View {
                 if viewModel.occurrences.isEmpty {
                     nonOccurrenceNotice
                 } else {
-                    OccurrenceListView(viewModel: viewModel)
+                    RecordListView(viewModel: viewModel)
                 }
                 
                 AddButton(threshold: 300) {
@@ -69,7 +69,7 @@ struct FeedView: View {
     var sortOrderToolbarItem: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
             FeedOptions(viewModel: viewModel)
-            //addMockEpisodesButton
+            addMockEpisodesButton
         }
     }
 }
