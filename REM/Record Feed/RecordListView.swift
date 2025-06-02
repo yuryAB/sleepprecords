@@ -13,8 +13,8 @@ struct RecordListView: View {
     @ObservedObject var viewModel: FeedViewModel
     
     private var groupedByMonth: [DateComponents: [Occurrence]] {
-        Dictionary(grouping: viewModel.occurrences) { occurrence in
-            Calendar.current.dateComponents([.year, .month], from: occurrence.date)
+        Dictionary(grouping: viewModel.records) { record in
+            Calendar.current.dateComponents([.year, .month], from: record.date)
         }
     }
 
@@ -30,23 +30,23 @@ struct RecordListView: View {
         guard let monthDate = Calendar.current.date(from: monthComponents) else {
             return Text("")
         }
-        let occurrences = groupedByMonth[monthComponents] ?? []
+        let records = groupedByMonth[monthComponents] ?? []
         let dateString = monthDate.formatted(.dateTime.month(.abbreviated).year())
-        let title = occurrences.count >= 2
-        ? "\(occurrences.count) " + "records on".localized + " \(dateString)"
+        let title = records.count >= 2
+        ? "\(records.count) " + "records on".localized + " \(dateString)"
         : dateString
         return Text(title)
     }
 
     @ViewBuilder
-    private func row(for occurrence: Occurrence) -> some View {
+    private func row(for record: Occurrence) -> some View {
         NavigationLink {
-            RecordDetailView(occurrence: occurrence)
+            RecordDetailView(record: record)
         } label: {
             VStack(alignment: .leading) {
-                Text(viewModel.formattedRecordName(from: occurrence) ?? occurrence.name)
+                Text(viewModel.formattedRecordName(from: record) ?? record.name)
                     .font(.headline)
-                Text(viewModel.formattedDateTime(for: occurrence.date))
+                Text(viewModel.formattedDateTime(for: record.date))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -57,16 +57,16 @@ struct RecordListView: View {
         List {
             ForEach(sortedMonths, id: \.self) { monthComponents in
                 Section(header: header(for: monthComponents)) {
-                    ForEach(groupedByMonth[monthComponents] ?? []) { occurrence in
-                        row(for: occurrence)
+                    ForEach(groupedByMonth[monthComponents] ?? []) { record in
+                        row(for: record)
                     }
                     .onDelete { indexSet in
                         indexSet.map { groupedByMonth[monthComponents]![$0] }
-                                .forEach { viewModel.deleteOccurrence($0, context: context) }
+                                .forEach { viewModel.deleteRecord($0, context: context) }
                     }
                 }
             }
         }
-        .animation(.easeInOut, value: viewModel.occurrences)
+        .animation(.easeInOut, value: viewModel.records)
     }
 }

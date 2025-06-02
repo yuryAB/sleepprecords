@@ -24,21 +24,21 @@ struct RecordDetailView: View {
     private let noteCharacterLimit = 500
     @State private var showDeleteConfirmation = false
     
-    let occurrence: Occurrence
+    let record: Occurrence
     
-    init(occurrence: Occurrence) {
-        self.occurrence = occurrence
-        _date = State(initialValue: occurrence.date)
-        _name = State(initialValue: occurrence.name)
-        _note = State(initialValue: occurrence.note)
-        _selectedFeelings = State(initialValue: occurrence.experiences ?? [])
+    init(record: Occurrence) {
+        self.record = record
+        _date = State(initialValue: record.date)
+        _name = State(initialValue: record.name)
+        _note = State(initialValue: record.note)
+        _selectedFeelings = State(initialValue: record.experiences ?? [])
     }
     
     private var isModified: Bool {
-        date != occurrence.date ||
-        name != occurrence.name ||
-        note != occurrence.note ||
-        selectedFeelings != (occurrence.experiences ?? [])
+        date != record.date ||
+        name != record.name ||
+        note != record.note ||
+        selectedFeelings != (record.experiences ?? [])
     }
 
     var body: some View {
@@ -100,12 +100,12 @@ struct RecordDetailView: View {
         }
         .onChange(of: trackDate) {
             if trackDate {
-                name = viewModel.getOccurrenceName(for: date)
+                name = viewModel.getRecordName(for: date)
             }
         }
         .onChange(of: date) {
             if trackDate {
-                name = viewModel.getOccurrenceName(for: date)
+                name = viewModel.getRecordName(for: date)
             }
         }
         .scrollDismissesKeyboard(.interactively)
@@ -118,7 +118,7 @@ struct RecordDetailView: View {
         .alert("Delete record?", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                viewModel.deleteOccurrence(occurrence, context: context)
+                viewModel.deleteRecord(record, context: context)
                 dismiss()
             }
         } message: {
@@ -128,8 +128,8 @@ struct RecordDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    viewModel.updateOccurrence(
-                        occurrence,
+                    viewModel.updateRecord(
+                        record,
                         newDate: date,
                         newName: name,
                         newNote: note,

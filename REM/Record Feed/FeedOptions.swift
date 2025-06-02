@@ -37,7 +37,7 @@ struct FeedOptions: View {
         Menu {
             Button(action: {
                 viewModel.sortDescending = true
-                viewModel.fetchOccurrences(context: context)
+                viewModel.fetchRecords(context: context)
             }) {
                 HStack {
                     if viewModel.sortDescending {
@@ -48,7 +48,7 @@ struct FeedOptions: View {
             }
             Button(action: {
                 viewModel.sortDescending = false
-                viewModel.fetchOccurrences(context: context)
+                viewModel.fetchRecords(context: context)
             }) {
                 HStack {
                     if !viewModel.sortDescending {

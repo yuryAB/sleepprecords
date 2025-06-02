@@ -15,30 +15,30 @@ struct FeedView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if viewModel.occurrences.isEmpty {
-                    nonOccurrenceNotice
+                if viewModel.records.isEmpty {
+                    nonRecordNotice
                 } else {
                     RecordListView(viewModel: viewModel)
                 }
                 
                 AddButton(threshold: 300) {
-                    viewModel.addOccurrence(context: context)
+                    viewModel.addRecord(context: context)
                 }
             }
-            .animation(.easeInOut, value: viewModel.occurrences)
+            .animation(.easeInOut, value: viewModel.records)
             .navigationTitle("Sleepp Records")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 sortOrderToolbarItem
             }
             .onAppear {
-                viewModel.fetchOccurrences(context: context)
+                viewModel.fetchRecords(context: context)
             }
         }
         .tint(.awake)
     }
     
-    var nonOccurrenceNotice: some View {
+    var nonRecordNotice: some View {
         VStack(spacing: 12) {
             Text("No records yet.")
                 .font(.title3)
@@ -60,7 +60,7 @@ struct FeedView: View {
     
     var addMockEpisodesButton: some View {
         Button {
-            viewModel.mockOccurrences(context: context)
+            viewModel.mockRecords(context: context)
         } label: {
             Image(systemName: "wand.and.stars")
         }

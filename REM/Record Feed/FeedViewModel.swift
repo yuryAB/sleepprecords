@@ -10,51 +10,51 @@ import SwiftData
 
 @MainActor
 final class FeedViewModel: ObservableObject {
-    @Published var occurrences: [Occurrence] = []
+    @Published var records: [Occurrence] = []
     @Published var sortDescending: Bool = true
     
-    func fetchOccurrences(context: ModelContext) {
+    func fetchRecords(context: ModelContext) {
         let descriptor = FetchDescriptor<Occurrence>(
             sortBy: [.init(\.date, order: sortDescending ? .reverse : .forward)]
         )
-        occurrences = (try? context.fetch(descriptor)) ?? []
+        records = (try? context.fetch(descriptor)) ?? []
     }
     
-    func addOccurrence(context: ModelContext, date: Date = Date()) {
-        let name = getOccurrenceName(for: date)
-        let newOccurrence = Occurrence(date: date, name: name)
-        context.insert(newOccurrence)
+    func addRecord(context: ModelContext, date: Date = Date()) {
+        let name = getRecordName(for: date)
+        let newRecord = Occurrence(date: date, name: name)
+        context.insert(newRecord)
         try? context.save()
-        fetchOccurrences(context: context)
+        fetchRecords(context: context)
     }
     
-    func getOccurrenceName(for date: Date = Date()) -> String {
+    func getRecordName(for date: Date = Date()) -> String {
         RecordNameManager.generateRecordName(for: date)
     }
     
-    func deleteOccurrence(_ occurrence: Occurrence, context: ModelContext) {
-        context.delete(occurrence)
+    func deleteRecord(_ record: Occurrence, context: ModelContext) {
+        context.delete(record)
         try? context.save()
-        fetchOccurrences(context: context)
+        fetchRecords(context: context)
     }
     
-    func updateOccurrence(
-        _ occurrence: Occurrence,
+    func updateRecord(
+        _ record: Occurrence,
         newDate: Date,
         newName: String,
         newNote: String,
         newExperiences: [Experience]?,
         context: ModelContext
     ) {
-        occurrence.date = newDate
-        occurrence.name = newName
-        occurrence.note = newNote
-        occurrence.experiences = newExperiences
+        record.date = newDate
+        record.name = newName
+        record.note = newNote
+        record.experiences = newExperiences
         try? context.save()
-        fetchOccurrences(context: context)
+        fetchRecords(context: context)
     }
     
-    func mockOccurrences(context: ModelContext) {
+    func mockRecords(context: ModelContext) {
         for _ in 1...50 {
             let year = Int.random(in: 2024...2025)
             let month = Int.random(in: 1...12)
@@ -69,7 +69,7 @@ final class FeedViewModel: ObservableObject {
             
             let date = Calendar.current.date(from: dateComponents) ?? Date()
             
-            addOccurrence(context: context, date: date)
+            addRecord(context: context, date: date)
         }
     }
     
@@ -90,7 +90,7 @@ final class FeedViewModel: ObservableObject {
         return formatter.string(from: date)
     }
     
-    func formattedRecordName(from occurence: Occurrence) -> String? {
-        return RecordNameManager.generateRecordDisplayName(for: occurence)
+    func formattedRecordName(from record: Occurrence) -> String? {
+        return RecordNameManager.generateRecordDisplayName(from: record)
     }
 }
