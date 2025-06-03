@@ -21,7 +21,11 @@ struct RecordDetailView: View {
     @State private var trackDate: Bool
     @State private var showDeleteConfirmation = false
     
-    @FocusState private var isEditing: Bool
+    enum Field: Hashable {
+        case name
+        case note
+    }
+    @FocusState private var focusedField: Field?
     
     private let noteCharacterLimit = 500
     
@@ -42,68 +46,85 @@ struct RecordDetailView: View {
         selectedFeelings != (record.experiences ?? [])
     }
     
-    var body: some View {
-        Form {
-            Section("Date and time") {
-                DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
-                    Label("", systemImage: "clock")
-                        .foregroundStyle(.primary)
-                }
-                .datePickerStyle(.compact)
+    private var dateAndTimeSection: some View {
+        Section("Date and time") {
+            DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
+                Label("", systemImage: "clock")
+                    .foregroundStyle(.primary)
             }
-            
-            Section(
-                header: HStack {
-                    Text("Name")
-                    Spacer()
-                    Text("Track date")
-                    Toggle("", isOn: $trackDate)
-                        .labelsHidden()
-                        .tint(.awake)
-                },
-                footer: Text("You can define a specific name for this record.")
-                    .font(.footnote)
-            ) {
-                TextField("Name", text: $name)
-                    .focused($isEditing)
-                    .onChange(of: name) {
-                        let autoName = viewModel.getRecordName(for: date)
-                        if trackDate && name != autoName {
-                            trackDate = false
-                        }
+            .datePickerStyle(.compact)
+        }
+    }
+    
+    private var nameSection: some View {
+        Section(
+            header: HStack {
+                Text("Name")
+                Spacer()
+                Text("Track date")
+                Toggle("", isOn: $trackDate)
+                    .labelsHidden()
+                    .tint(.awake)
+            },
+            footer: Text("You can define a specific name for this record.")
+                .font(.footnote)
+        ) {
+            TextField("Name", text: $name)
+                .focused($focusedField, equals: .name)
+                .onChange(of: name) {
+                    let autoName = viewModel.getRecordName(for: date)
+                    if trackDate && name != autoName {
+                        trackDate = false
                     }
-            }
-            
-            Section("Note") {
-                ZStack(alignment: .topLeading) {
-                    if note.isEmpty {
-                        Text("Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful.")
-                            .foregroundColor(.secondary)
-                            .padding(8)
-                    }
-                    TextEditor(text: $note)
-                        .frame(height: 100)
-                        .focused($isEditing)
                 }
-                Text("\(note.count) / \(noteCharacterLimit)")
-                    .font(.footnote)
-                    .foregroundColor(note.count > noteCharacterLimit ? .red : .secondary)
-            }
-            
-            Section("Experience") {
-                ExperienceSetterView(selectedExperiences: $selectedFeelings)
-            }
-            
-            Section {
-                HStack {
-                    Spacer()
-                    Button("Delete record", role: .destructive) {
-                        showDeleteConfirmation = true
-                    }
-                    Spacer()
+        }
+    }
+    
+    private var noteSection: some View {
+        Section("Note") {
+            ZStack(alignment: .topLeading) {
+                if note.isEmpty {
+                    Text("Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful.")
+                        .foregroundColor(.secondary)
+                        .padding(8)
                 }
+                TextEditor(text: $note)
+                    .frame(height: 100)
+                    .focused($focusedField, equals: .note)
+            }
+            Text("\(note.count) / \(noteCharacterLimit)")
+                .font(.footnote)
+                .foregroundColor(note.count > noteCharacterLimit ? .red : .secondary)
+        }
+    }
+    
+    private var experienceSection: some View {
+        Section("Experience") {
+            ExperienceSetterView(selectedExperiences: $selectedFeelings)
+        }
+    }
+    
+    private var deleteSection: some View {
+        Section {
+            HStack {
+                Spacer()
+                Button("Delete record", role: .destructive) {
+                    showDeleteConfirmation = true
+                }
+                Spacer()
             }
         }
+    }
+    
+    var body: some View {
+        Form {
+            dateAndTimeSection
+            nameSection
+            noteSection
+            experienceSection
+            deleteSection
+        }
+        .scrollDismissesKeyboard(.immediately)
         .onChange(of: trackDate) {
             if trackDate {
                 name = viewModel.getRecordName(for: date)
@@ -114,13 +135,6 @@ struct RecordDetailView: View {
                 name = viewModel.getRecordName(for: date)
             }
         }
-        .scrollDismissesKeyboard(.interactively)
-        .gesture(
-            TapGesture().onEnded {
-                isEditing = false
-            },
-            including: .none
-        )
         .alert("Delete record?", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
