@@ -41,7 +41,7 @@ struct RecordListView: View {
     @ViewBuilder
     private func row(for record: Occurrence) -> some View {
         NavigationLink {
-            RecordDetailView(record: record)
+            RecordDetailView(record: record, viewModel: viewModel)
         } label: {
             VStack(alignment: .leading) {
                 Text(viewModel.formattedRecordName(from: record) ?? record.name)
