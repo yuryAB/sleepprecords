@@ -12,7 +12,7 @@ import SwiftData
 struct REMApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Occurrence.self,
+            Record.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

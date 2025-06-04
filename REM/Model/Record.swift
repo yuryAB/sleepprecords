@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Occurrence {
+final class Record {
     @Attribute(.unique) var id: UUID
     var date: Date
     var name: String

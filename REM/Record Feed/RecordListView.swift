@@ -12,7 +12,7 @@ struct RecordListView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var viewModel: FeedViewModel
     
-    private var groupedByMonth: [DateComponents: [Occurrence]] {
+    private var groupedByMonth: [DateComponents: [Record]] {
         Dictionary(grouping: viewModel.records) { record in
             Calendar.current.dateComponents([.year, .month], from: record.date)
         }
@@ -39,7 +39,7 @@ struct RecordListView: View {
     }
 
     @ViewBuilder
-    private func row(for record: Occurrence) -> some View {
+    private func row(for record: Record) -> some View {
         NavigationLink {
             RecordDetailView(record: record, viewModel: viewModel)
         } label: {

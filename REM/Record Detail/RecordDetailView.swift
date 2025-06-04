@@ -12,7 +12,7 @@ struct RecordDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
     @ObservedObject var viewModel: FeedViewModel
-    let record: Occurrence
+    let record: Record
     
     @State private var date: Date
     @State private var name: String
@@ -29,7 +29,7 @@ struct RecordDetailView: View {
     
     private let noteCharacterLimit = 500
     
-    init(record: Occurrence, viewModel: FeedViewModel) {
+    init(record: Record, viewModel: FeedViewModel) {
         self.viewModel = viewModel
         self.record = record
         _date = State(initialValue: record.date)
