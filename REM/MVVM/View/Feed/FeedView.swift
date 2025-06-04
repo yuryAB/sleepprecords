@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import os
 
 struct FeedView: View {
     @Environment(\.modelContext) private var context
@@ -22,6 +23,7 @@ struct FeedView: View {
                 }
                 
                 AddButton(threshold: 300) {
+                    AppLog.info(.feed, "AddButton tapped, adding new record")
                     viewModel.addRecord(context: context)
                 }
             }
@@ -32,6 +34,7 @@ struct FeedView: View {
                 sortOrderToolbarItem
             }
             .onAppear {
+                AppLog.info(.feed, "FeedView appeared")
                 viewModel.fetchRecords(context: context)
             }
         }

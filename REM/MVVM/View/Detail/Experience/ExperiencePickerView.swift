@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os
 
 struct ExperiencePickerView: View {
     @Binding var selectedExperiences: [Experience]
@@ -31,16 +32,21 @@ struct ExperiencePickerView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Close") {
+                        AppLog.info(.experience, "Close button tapped in ExperiencePickerView")
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Select") {
+                        AppLog.info(.experience, "Select button tapped with selectedExperiences: \(selectedExperiences)")
                         dismiss()
                     }
                     .disabled(selectedExperiences.isEmpty)
                 }
             }
+        }
+        .onAppear {
+            AppLog.info(.experience, "ExperiencePickerView appeared")
         }
     }
 }

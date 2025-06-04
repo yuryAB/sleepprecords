@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os
 
 struct RecordDetailView: View {
     @Environment(\.modelContext) private var context
@@ -138,6 +139,7 @@ struct RecordDetailView: View {
         .alert("Delete record?", isPresented: $showDeleteConfirmation) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
+                AppLog.info(.detail, "User confirmed deletion of record id: \(record.id)")
                 viewModel.deleteRecord(record, context: context)
                 dismiss()
             }
@@ -145,9 +147,13 @@ struct RecordDetailView: View {
             Text("This action cannot be undone.")
         }
         .navigationTitle("Edit Record")
+        .onAppear {
+            AppLog.info(.detail, "RecordDetailView appeared for record id: \(record.id)")
+        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
+                    AppLog.info(.detail, "User tapped Save for record id: \(record.id)")
                     viewModel.updateRecord(
                         record,
                         newDate: date,

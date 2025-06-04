@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import os
 
 struct FeedOptions: View {
     @Environment(\.modelContext) private var context
@@ -25,6 +26,7 @@ struct FeedOptions: View {
         .alert("Language change", isPresented: $showingLanguageAlert) {
             Button("No", role: .cancel) { }
             Button("Yes") {
+                AppLog.info(.feed, "User confirmed language change redirection")
                 guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
                 UIApplication.shared.open(url)
             }
@@ -36,6 +38,7 @@ struct FeedOptions: View {
     var sortSubMenu: some View {
         Menu {
             Button(action: {
+                AppLog.info(.feed, "Sort order set to descending")
                 viewModel.sortDescending = true
                 viewModel.fetchRecords(context: context)
             }) {
@@ -47,6 +50,7 @@ struct FeedOptions: View {
                 }
             }
             Button(action: {
+                AppLog.info(.feed, "Sort order set to ascending")
                 viewModel.sortDescending = false
                 viewModel.fetchRecords(context: context)
             }) {
@@ -66,6 +70,7 @@ struct FeedOptions: View {
     
     var languageSubMenu: some View {
         Button {
+            AppLog.info(.feed, "Language change alert will be presented")
             showingLanguageAlert = true
         } label: {
             Label("App language", systemImage: "globe")
