@@ -10,9 +10,22 @@
 		728D851E2DE0DF9B0094D074 /* REM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		723BD40D2DEFC5B5005882BF /* Exceptions for "REM" folder in "REM" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 728D851D2DE0DF9B0094D074 /* REM */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		728D85202DE0DF9B0094D074 /* REM */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				723BD40D2DEFC5B5005882BF /* Exceptions for "REM" folder in "REM" target */,
+			);
 			path = REM;
 			sourceTree = "<group>";
 		};
@@ -258,11 +271,11 @@
 				DEVELOPMENT_TEAM = ASRK7R7UY8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = REM/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sleepp Records";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -289,11 +302,11 @@
 				DEVELOPMENT_TEAM = ASRK7R7UY8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = REM/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sleepp Records";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (

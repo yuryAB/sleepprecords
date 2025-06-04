@@ -58,7 +58,7 @@ struct FeedView: View {
         .padding(30)
     }
     
-    var addMockEpisodesButton: some View {
+    var addMockRecordsButton: some View {
         Button {
             viewModel.mockRecords(context: context)
         } label: {
@@ -69,7 +69,7 @@ struct FeedView: View {
     var sortOrderToolbarItem: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
             FeedOptions(viewModel: viewModel)
-            addMockEpisodesButton
+            addMockRecordsButton
         }
     }
 }
