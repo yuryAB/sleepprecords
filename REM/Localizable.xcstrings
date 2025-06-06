@@ -4,16 +4,8 @@
     "" : {
       "shouldTranslate" : false
     },
-    "%lld / %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld / %2$lld"
-          }
-        }
-      },
-      "shouldTranslate" : false
+    "%lld" : {
+
     },
     "Afternoon" : {
       "extractionState" : "manual",
@@ -25,6 +17,9 @@
           }
         }
       }
+    },
+    "Anterior" : {
+
     },
     "App language" : {
       "localizations" : {
@@ -75,6 +70,9 @@
           }
         }
       }
+    },
+    "Começar" : {
+
     },
     "Date and time" : {
       "localizations" : {
@@ -156,6 +154,9 @@
           }
         }
       }
+    },
+    "Edit Note" : {
+
     },
     "Edit Record" : {
       "localizations" : {
@@ -1157,6 +1158,9 @@
         }
       }
     },
+    "Leave your note…" : {
+
+    },
     "Monday" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1256,6 +1260,15 @@
         }
       }
     },
+    "Paralysis duration" : {
+
+    },
+    "Próximo" : {
+
+    },
+    "Pular" : {
+
+    },
     "records on" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1297,6 +1310,9 @@
           }
         }
       }
+    },
+    "Sleep start time" : {
+
     },
     "Sleepp Records" : {
       "shouldTranslate" : false
@@ -1363,6 +1379,9 @@
           }
         }
       }
+    },
+    "Unknown start time" : {
+
     },
     "Wednesday" : {
       "extractionState" : "manual",

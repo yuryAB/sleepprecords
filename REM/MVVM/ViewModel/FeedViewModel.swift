@@ -14,6 +14,15 @@ final class FeedViewModel: ObservableObject {
     @Published var records: [Record] = []
     @Published var sortDescending: Bool = true
     
+    var currentLocale: Locale {
+        switch LocalizationManager.currentLanguage {
+        case .portuguese:
+            return Locale(identifier: "pt_BR")
+        case .english:
+            return Locale(identifier: "en_US")
+        }
+    }
+    
     func fetchRecords(context: ModelContext) {
         AppLog.info(.feedVM, "Starting fetchRecords with sortDescending: \(sortDescending)")
         let descriptor = FetchDescriptor<Record>(
@@ -95,14 +104,7 @@ final class FeedViewModel: ObservableObject {
     }
     
     func formattedDateTime(for date: Date) -> String {
-        let locale: Locale
-        switch LocalizationManager.currentLanguage {
-        case .portuguese:
-            locale = Locale(identifier: "pt_BR")
-        case .english:
-            locale = Locale(identifier: "en_US")
-        }
-
+        let locale = currentLocale
         let formatter = DateFormatter()
         formatter.locale = locale
         formatter.dateStyle = .long

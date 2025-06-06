@@ -26,6 +26,7 @@ struct REMApp: App {
     var body: some Scene {
         WindowGroup {
             FeedView()
+            //OnboardingView()
         }
         .modelContainer(sharedModelContainer)
     }

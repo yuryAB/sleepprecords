@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExperienceSetterView: View {
     @Binding var selectedExperiences: [Experience]
-    @State private var showingPicker = false
+    @Binding var showingPicker: Bool
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,14 +21,6 @@ struct ExperienceSetterView: View {
                 )
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                Spacer()
-                Button {
-                    showingPicker = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.title3)
-                        .foregroundStyle(.awake)
-                }
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
