@@ -5,7 +5,6 @@
 //  Created by yury antony on 07/06/25.
 //
 
-
 import SwiftUI
 
 struct DateAndTimeSectionView: View {
@@ -13,7 +12,7 @@ struct DateAndTimeSectionView: View {
     let locale: Locale
     
     var body: some View {
-        Section("Momento do registro") {
+        Section("detail.dateAndTimeSection.title") {
             content
         }
     }
@@ -23,14 +22,16 @@ struct DateAndTimeSectionView: View {
             HStack() {
                 Image(systemName: "calendar")
                     .foregroundStyle(.primary)
-                DatePicker("Registro em:", selection: $date, displayedComponents: .date)
-                    .environment(\.locale, locale)
+                DatePicker("detail.dateAndTimeSection.dateLabel",
+                           selection: $date,
+                           displayedComponents: .date)
+                .environment(\.locale, locale)
             }
             
             HStack() {
                 Image(systemName: "clock")
                     .foregroundStyle(.primary)
-                Text("Hora do registro: ")
+                Text("detail.dateAndTimeSection.timeLabel")
                 Spacer()
                 TimeBasedIconView(date: $date)
                 Spacer()
