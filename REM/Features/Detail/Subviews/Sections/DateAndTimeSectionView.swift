@@ -38,7 +38,7 @@ struct DateAndTimeSectionView: View {
                 DatePicker("", selection: $date,
                            displayedComponents: .hourAndMinute)
                 .labelsHidden()
-                    .environment(\.locale, locale)
+                .environment(\.locale, locale)
             }
         }
     }

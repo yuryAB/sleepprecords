@@ -29,14 +29,14 @@ struct NameSectionView: View {
     }
     
     private var title: some View {
-        Text("Name")
+        Text("detail.nameSection.title") //Name
             .font(.footnote)
             .foregroundColor(.gray)
     }
     
     private var actionButton: some View {
         Group {
-            Text("Track date")
+            Text("detail.nameSection.trackDateLabel") //Track date
             Toggle("", isOn: $trackDate)
                 .labelsHidden()
                 .tint(.awake)
@@ -44,29 +44,25 @@ struct NameSectionView: View {
     }
     
     private var footer: some View {
-        Text("You can define a specific name for this record.")
+        Text("detail.nameSection.footerLabel") //You can define a specific name for this record.
             .font(.footnote)
     }
     
     private var content: some View {
         VStack {
-            TextField("Name", text: $name)
+            TextField("detail.nameSection.title", text: $name)
                 .onChange(of: name) {
                     let autoName = computeAutoName()
                     if trackDate && name != autoName {
                         trackDate = false
                     }
                 }
-            let remaining = characterLimit - name.count
-            HStack {
-                Text("\(remaining)")
-                    .font(.footnote)
-                    .foregroundColor(remaining < 0 ? .red : .secondary)
-                    .padding(.top, 4)
-                Spacer()
-            }
-            
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        CharacterCountIndicator(currentCount: name.count, characterLimit: characterLimit)
+                    }
+                }
         }
-        
     }
 }

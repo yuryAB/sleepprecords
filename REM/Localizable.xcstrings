@@ -172,6 +172,54 @@
         }
       }
     },
+    "detail.nameSection.footerLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can define a specific name for this record."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você pode definir um nome específico para este registro."
+          }
+        }
+      }
+    },
+    "detail.nameSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome"
+          }
+        }
+      }
+    },
+    "detail.nameSection.trackDateLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track date"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seguir data"
+          }
+        }
+      }
+    },
     "Do you remember experiencing any of these at that moment?" : {
       "localizations" : {
         "pt-BR" : {
@@ -1230,16 +1278,6 @@
         }
       }
     },
-    "Name" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome"
-          }
-        }
-      }
-    },
     "Night" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1400,16 +1438,6 @@
         }
       }
     },
-    "Track date" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seguir data"
-          }
-        }
-      }
-    },
     "Tuesday" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1451,16 +1479,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sim"
-          }
-        }
-      }
-    },
-    "You can define a specific name for this record." : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você pode definir um nome específico para este registro."
           }
         }
       }

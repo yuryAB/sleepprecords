@@ -24,7 +24,7 @@ final class RecordDetailViewModel: ObservableObject {
 
     @Published var visibleSections: Set<RecordDetailSection> = Set(RecordDetailSection.allCases)
 
-    let nameCharacterLimit = 50
+    let nameCharacterLimit = 30
     let noteCharacterLimit = 500
 
     // MARK: - Computed Properties
