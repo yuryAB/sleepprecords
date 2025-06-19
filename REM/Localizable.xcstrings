@@ -75,6 +75,7 @@
 
     },
     "Date and time" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -1128,6 +1129,12 @@
         }
       }
     },
+    "Hora do registro: " : {
+
+    },
+    "Hora que foi dormir" : {
+
+    },
     "If you feel comfortable and remember, feel free to select the experiences you went through." : {
       "localizations" : {
         "pt-BR" : {
@@ -1159,6 +1166,9 @@
       }
     },
     "Leave your note…" : {
+
+    },
+    "Momento do registro" : {
 
     },
     "Monday" : {
@@ -1280,6 +1290,9 @@
         }
       }
     },
+    "Registro em:" : {
+
+    },
     "Saturday" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1379,6 +1392,9 @@
           }
         }
       }
+    },
+    "Você lembra que horas foi dormir nesse dia?" : {
+
     },
     "Wednesday" : {
       "extractionState" : "manual",

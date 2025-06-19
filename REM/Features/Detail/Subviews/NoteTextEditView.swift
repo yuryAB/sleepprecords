@@ -5,7 +5,6 @@
 //  Created by yury antony on 05/06/25.
 //
 
-
 import SwiftUI
 
 struct NoteTextEditView: View {
