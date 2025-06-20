@@ -5,22 +5,24 @@
 //  Created by yury antony on 07/06/25.
 //
 
-
 import SwiftUI
 
 struct ParalysisDurationSectionView: View {
-    @Binding var selectedDuration: String
+    @Binding var selectedDuration: ParalysisDuration
 
-    private let durations = [
-        "Less than 30 seconds",
-        "30 s – 1 minute",
-        "1 – 2 minutes",
-        "More than 2 minutes",
-        "Not sure"
-    ]
+    init(selectedDuration: Binding<ParalysisDuration>) {
+        let originalDuration = selectedDuration.wrappedValue
+        let initialDuration = originalDuration
+        self._selectedDuration = Binding<ParalysisDuration>(
+            get: { initialDuration },
+            set: { newValue in
+                selectedDuration.wrappedValue = newValue
+            }
+        )
+    }
 
     var body: some View {
-        Section(header: header) {
+        Section(header: header, footer: footer) {
             content
         }
     }
@@ -33,25 +35,30 @@ struct ParalysisDurationSectionView: View {
     }
     
     private var title: some View {
-        Text("Paralysis duration")
+        Text("detail.paralysisDurationSection.title")
+            .font(.footnote)
+            .foregroundColor(.gray)
+    }
+    
+    private var footer: some View {
+        Text("detail.paralysisDurationSection.footerLabel")
             .font(.footnote)
             .foregroundColor(.gray)
     }
     
     private var content: some View {
-        ForEach(durations, id: \.self) { option in
-            HStack {
-                Text(option)
-                Spacer()
-                if selectedDuration == option {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.awake)
-                }
+        Picker(selection: $selectedDuration) {
+            ForEach(ParalysisDuration.allCases) { option in
+                Text(option.description).tag(option)
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                selectedDuration = option
+        } label: {
+            HStack {
+                Image(systemName: "hourglass")
+                    .foregroundStyle(.primary)
+                Text("common.duration")
+                Spacer()
             }
         }
+        .pickerStyle(.menu)
     }
 }

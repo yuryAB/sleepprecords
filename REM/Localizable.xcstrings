@@ -86,6 +86,22 @@
         }
       }
     },
+    "common.duration" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duration"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duração"
+          }
+        }
+      }
+    },
     "common.save" : {
       "localizations" : {
         "en" : {
@@ -362,6 +378,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anotação"
+          }
+        }
+      }
+    },
+    "detail.paralysisDurationSection.footerLabel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you have any idea how long the paralysis lasted? Add it to the record."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tem uma noção de quanto tempo durou a paralisia? Adicione no registro."
+          }
+        }
+      }
+    },
+    "detail.paralysisDurationSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paralysis duration"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duração da paralisia"
           }
         }
       }
@@ -1474,8 +1523,73 @@
         }
       }
     },
-    "Paralysis duration" : {
-
+    "paralysisDuration.label.from30To60Seconds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 sec. – 1 min."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 seg. - 1 min."
+          }
+        }
+      }
+    },
+    "paralysisDuration.label.moreThan1Minute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More than 1 min."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mais de 1 min."
+          }
+        }
+      }
+    },
+    "paralysisDuration.label.notSure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not sure"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem certeza"
+          }
+        }
+      }
+    },
+    "paralysisDuration.label.upTo10Seconds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Up to 10 sec."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Até 1 seg."
+          }
+        }
+      }
     },
     "Próximo" : {
 

@@ -41,6 +41,10 @@ extension RecordDetailView {
                     sleepStartSection
                 }
                 
+                if viewModel.visibleSections.contains(.paralysisDuration) {
+                    paralysisDurationSection
+                }
+                
                 if viewModel.visibleSections.contains(.note) {
                     noteSection
                 }
@@ -49,9 +53,6 @@ extension RecordDetailView {
                     experienceSection
                 }
                 
-                if viewModel.visibleSections.contains(.paralysisDuration) {
-                    paralysisDurationSection
-                }
                 if viewModel.visibleSections.contains(.routineMetrics) {
                     routineMetricsSection
                 }
