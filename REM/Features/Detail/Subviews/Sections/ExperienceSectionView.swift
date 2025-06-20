@@ -13,7 +13,7 @@ struct ExperienceSectionView: View {
     @Binding var showingPicker: Bool
     
     var body: some View {
-        Section(header: header) {
+        Section(header: header, footer: footer) {
             content
         }
     }
@@ -27,7 +27,13 @@ struct ExperienceSectionView: View {
     }
     
     private var title: some View {
-        Text("Experience")
+        Text("detail.experienceeSection.title")
+            .font(.footnote)
+            .foregroundColor(.gray)
+    }
+    
+    private var footer: some View {
+        Text("detail.experienceeSection.footerLabel")
             .font(.footnote)
             .foregroundColor(.gray)
     }

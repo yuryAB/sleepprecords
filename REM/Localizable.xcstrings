@@ -51,16 +51,6 @@
         }
       }
     },
-    "Close" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fechar"
-          }
-        }
-      }
-    },
     "Começar" : {
 
     },
@@ -108,6 +98,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salvar"
+          }
+        }
+      }
+    },
+    "common.select" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selecionar"
           }
         }
       }
@@ -196,6 +202,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Momento do registro"
+          }
+        }
+      }
+    },
+    "detail.experienceeSection.footerLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If any of the listed experiences happened to you, you can add them to the record."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caso alguma das experiências listadas tenha acontecido com você, você pode adicioná-la ao registro."
+          }
+        }
+      }
+    },
+    "detail.experienceeSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experience"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experiência"
+          }
+        }
+      }
+    },
+    "detail.experienceeSectionPicker.descriptionLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you remember experiencing any of these at that moment?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você se lembra de ter tido alguma dessas experiências naquele momento?"
+          }
+        }
+      }
+    },
+    "detail.experienceeSectionSetter.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your experiences"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suas experiências"
           }
         }
       }
@@ -344,16 +414,6 @@
         }
       }
     },
-    "Do you remember experiencing any of these at that moment?" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você se lembra de ter tido alguma dessas experiências naquele momento?"
-          }
-        }
-      }
-    },
     "Early Morning" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -382,16 +442,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noite"
-          }
-        }
-      }
-    },
-    "Experience" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Experiência"
           }
         }
       }
@@ -1325,16 +1375,6 @@
         }
       }
     },
-    "If you feel comfortable and remember, feel free to select the experiences you went through." : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se você se sentir à vontade e se lembrar, fique à vontade para selecionar as experiências que viveu."
-          }
-        }
-      }
-    },
     "If you have notes made outside the app, create a new record and later edit details like the date." : {
       "localizations" : {
         "pt-BR" : {
@@ -1465,18 +1505,15 @@
         }
       }
     },
-    "Select" : {
+    "Sleepp Records" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Selecionar"
+            "value" : "Sleepp Records"
           }
         }
       }
-    },
-    "Sleepp Records" : {
-      "shouldTranslate" : false
     },
     "Sunday" : {
       "extractionState" : "manual",
@@ -1568,16 +1605,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Você será redirecionado para as configurações do aplicativo no sistema. Deseja continuar?"
-          }
-        }
-      }
-    },
-    "Your Experiences" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suas Experiências"
           }
         }
       }

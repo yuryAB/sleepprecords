@@ -48,6 +48,7 @@ extension RecordDetailView {
                 if viewModel.visibleSections.contains(.experience) {
                     experienceSection
                 }
+                
                 if viewModel.visibleSections.contains(.paralysisDuration) {
                     paralysisDurationSection
                 }

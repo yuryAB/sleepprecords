@@ -25,7 +25,6 @@ struct ExperienceRowView: View {
                 VStack(alignment: .leading) {
                     Text(Experience.label)
                         .foregroundColor(.primary)
-                        .font(.title3)
                         .fontWeight(.bold)
                     Text(Experience.description)
                         .font(.subheadline)

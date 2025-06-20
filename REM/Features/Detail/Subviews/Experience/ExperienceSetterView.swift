@@ -13,19 +13,11 @@ struct ExperienceSetterView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text(
-                    selectedExperiences.isEmpty
-                    ? "If you feel comfortable and remember, feel free to select the experiences you went through."
-                    : "Your Experiences"
-                )
+            if selectedExperiences.isEmpty {
+                Text("detail.experienceeSectionSetter.title")//Your Experiences")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(8)
 
             if !selectedExperiences.isEmpty {
                 let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 5)

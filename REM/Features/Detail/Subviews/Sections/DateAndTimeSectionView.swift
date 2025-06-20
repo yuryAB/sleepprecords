@@ -12,9 +12,23 @@ struct DateAndTimeSectionView: View {
     let locale: Locale
     
     var body: some View {
-        Section("detail.dateAndTimeSection.title") {
+        Section(header: header) {
             content
         }
+        
+    }
+    
+    private var header: some View {
+        HStack {
+            title
+            Spacer()
+        }
+    }
+    
+    private var title: some View {
+        Text("detail.dateAndTimeSection.title")
+            .font(.footnote)
+            .foregroundColor(.gray)
     }
     
     private var content: some View {
