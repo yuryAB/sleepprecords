@@ -29,14 +29,14 @@ struct NameSectionView: View {
     }
     
     private var title: some View {
-        Text("detail.nameSection.title") //Name
+        Text("detail.nameSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
     
     private var actionButton: some View {
         Group {
-            Text("detail.nameSection.trackDateLabel") //Track date
+            Text("detail.nameSection.trackDateLabel")
             Toggle("", isOn: $trackDate)
                 .labelsHidden()
                 .tint(.awake)
@@ -44,7 +44,7 @@ struct NameSectionView: View {
     }
     
     private var footer: some View {
-        Text("detail.nameSection.footerLabel") //You can define a specific name for this record.
+        Text("detail.nameSection.footerLabel")
             .font(.footnote)
     }
     

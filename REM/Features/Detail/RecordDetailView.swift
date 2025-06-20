@@ -34,12 +34,12 @@ extension RecordDetailView {
     private var formBody: some View {
         VStack {
             Form {
+                nameSection
                 dateAndTimeSection
+                
                 if viewModel.visibleSections.contains(.sleepStart) {
                     sleepStartSection
                 }
-                
-                nameSection
                 
                 if viewModel.visibleSections.contains(.note) {
                     noteSection

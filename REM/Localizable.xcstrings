@@ -220,6 +220,54 @@
         }
       }
     },
+    "detail.sleepStartSection.contentLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fell asleep at:"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foi dormir às:"
+          }
+        }
+      }
+    },
+    "detail.sleepStartSection.footerLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you remember, log the time you fell asleep."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se lembrar, registre aqui o horário que foi dormir."
+          }
+        }
+      }
+    },
+    "detail.sleepStartSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Start"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Início do sono"
+          }
+        }
+      }
+    },
     "Do you remember experiencing any of these at that moment?" : {
       "localizations" : {
         "pt-BR" : {
@@ -1214,9 +1262,6 @@
         }
       }
     },
-    "Hora que foi dormir" : {
-
-    },
     "If you feel comfortable and remember, feel free to select the experiences you went through." : {
       "localizations" : {
         "pt-BR" : {
@@ -1390,9 +1435,6 @@
         }
       }
     },
-    "Sleep start time" : {
-
-    },
     "Sleepp Records" : {
       "shouldTranslate" : false
     },
@@ -1448,9 +1490,6 @@
           }
         }
       }
-    },
-    "Você lembra que horas foi dormir nesse dia?" : {
-
     },
     "Wednesday" : {
       "extractionState" : "manual",

@@ -27,13 +27,13 @@ struct SleepStartSectionView: View {
     }
     
     private var title: some View {
-        Text("Sleep start time")
+        Text("detail.sleepStartSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
     
     private var footer: some View {
-        Text("Você lembra que horas foi dormir nesse dia?")
+        Text("detail.sleepStartSection.footerLabel")
             .font(.footnote)
     }
     
@@ -41,13 +41,13 @@ struct SleepStartSectionView: View {
         HStack {
             Image(systemName: "clock")
                 .foregroundStyle(.primary)
-            Text("Hora que foi dormir")
-            Spacer()
-            TimeBasedIconView(date: $sleepStart)
+            Text("detail.sleepStartSection.contentLabel")
             Spacer()
             DatePicker("", selection: $sleepStart, displayedComponents: .hourAndMinute)
                 .labelsHidden()
                 .environment(\.locale, locale)
+            TimeBasedIconView(date: $sleepStart)
+                .padding(.leading, 10)
         }
     }
 }

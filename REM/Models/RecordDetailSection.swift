@@ -18,7 +18,7 @@ enum RecordDetailSection: CaseIterable, Hashable {
     var title: String {
         switch self {
         case .sleepStart:
-            return "Sleep Start"
+            return "detail.sleepStartSection.title".localized
         case .note:
             return "Note"
         case .experience:

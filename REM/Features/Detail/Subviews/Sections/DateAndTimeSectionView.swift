@@ -33,12 +33,13 @@ struct DateAndTimeSectionView: View {
                     .foregroundStyle(.primary)
                 Text("detail.dateAndTimeSection.timeLabel")
                 Spacer()
-                TimeBasedIconView(date: $date)
-                Spacer()
+                
                 DatePicker("", selection: $date,
                            displayedComponents: .hourAndMinute)
                 .labelsHidden()
                 .environment(\.locale, locale)
+                TimeBasedIconView(date: $date)
+                    .padding(.leading, 10)
             }
         }
     }
