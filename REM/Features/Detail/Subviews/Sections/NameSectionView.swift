@@ -11,6 +11,7 @@ import SwiftUI
 struct NameSectionView: View {
     @Binding var name: String
     @Binding var trackDate: Bool
+    @FocusState private var isFocused: Bool
     let computeAutoName: () -> String
     let characterLimit: Int
     
@@ -51,6 +52,7 @@ struct NameSectionView: View {
     private var content: some View {
         VStack {
             TextField("detail.nameSection.title", text: $name)
+                .focused($isFocused)
                 .onChange(of: name) {
                     let autoName = computeAutoName()
                     if trackDate && name != autoName {
@@ -58,9 +60,11 @@ struct NameSectionView: View {
                     }
                 }
                 .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        CharacterCountIndicator(currentCount: name.count, characterLimit: characterLimit)
+                    if isFocused {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            CharacterCountIndicator(currentCount: name.count, characterLimit: characterLimit)
+                        }
                     }
                 }
         }

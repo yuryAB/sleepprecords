@@ -15,8 +15,8 @@ struct DeleteAlertView: View {
     var body: some View {
         Color.clear
             .alert("Delete record?", isPresented: $isPresented) {
-                Button("Cancel", role: .cancel) { }
-                Button("Delete", role: .destructive) {
+                Button("common.cancel", role: .cancel) { }
+                Button("common.delete", role: .destructive) {
                     onConfirm()
                 }
             } message: {

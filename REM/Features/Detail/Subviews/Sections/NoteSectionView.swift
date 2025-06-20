@@ -14,7 +14,7 @@ struct NoteSectionView: View {
     let characterLimit: Int
     
     var body: some View {
-        Section(header: header) {
+        Section(header: header, footer: footer) {
             content
         }
     }
@@ -28,7 +28,7 @@ struct NoteSectionView: View {
     }
     
     private var title: some View {
-        Text("Note")
+        Text("detail.noteSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
@@ -51,13 +51,18 @@ struct NoteSectionView: View {
     private var content: some View {
         ZStack(alignment: .topLeading) {
             if note.isEmpty {
-                Text("Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful.")
-                    .foregroundColor(.secondary)
+                Text("detail.noteSection.contentLabel")
+                    .foregroundColor(.secondary.opacity(0.5))
                     .padding(8)
             }
             Text(note)
                 .padding(8)
-                .frame(maxWidth: .infinity, minHeight: 100, alignment: .topLeading)
+                .frame(maxWidth: .infinity, minHeight: 30, alignment: .topLeading)
         }
+    }
+    
+    private var footer: some View {
+        Text("detail.noteSection.footerLabel")
+            .font(.footnote)
     }
 }

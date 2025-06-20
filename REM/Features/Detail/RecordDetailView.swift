@@ -44,6 +44,7 @@ extension RecordDetailView {
                 if viewModel.visibleSections.contains(.note) {
                     noteSection
                 }
+                
                 if viewModel.visibleSections.contains(.experience) {
                     experienceSection
                 }
@@ -115,7 +116,7 @@ extension RecordDetailView {
                     viewModel.showDeleteConfirmation = true
                 }
                 Spacer()
-                Button("Save") {
+                Button("common.save") {
                     AppLog.info(.detail, "User tapped Save for record id: \(record.id)")
                     viewModel.save(record: record, context: context)
                     dismiss()

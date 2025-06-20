@@ -22,12 +22,14 @@ struct CharacterCountIndicator: View {
             Circle()
                 .trim(from: 0.0, to: min(CGFloat(currentCount) / CGFloat(characterLimit), 1.0))
                 .stroke(style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round))
-                .foregroundColor(remaining < 0 ? .red : .awake)
+                .foregroundColor(remaining < 1 ? .red : (currentCount >= Int(Double(characterLimit) * 0.8) ? .yellow : .awake))
                 .rotationEffect(Angle(degrees: -90))
                 .animation(.easeOut(duration: 0.3), value: currentCount)
-            Text("\(remaining)")
-                .font(.footnote)
-                .foregroundColor(remaining < 0 ? .red : .secondary)
+            if abs(remaining) < 100 {
+                Text("\(remaining)")
+                    .font(.footnote)
+                    .foregroundColor(remaining < 1 ? .red : (currentCount >= Int(Double(characterLimit) * 0.8) ? .yellow : .secondary))
+            }
         }
         .frame(width: 24, height: 24)
     }

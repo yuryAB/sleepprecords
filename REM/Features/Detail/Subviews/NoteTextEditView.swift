@@ -10,59 +10,66 @@ import SwiftUI
 struct NoteTextEditView: View {
     @Environment(\.presentationMode) private var presentationMode
     @Binding var text: String
+    @FocusState private var isFocused: Bool
     private let maxCharacters: Int
-
+    @State private var editableText: String
+    
     init(text: Binding<String>,
-         maxCharacters: Int = 500) {
+         maxCharacters: Int = 200) {
         self._text = text
         self.maxCharacters = maxCharacters
+        self._editableText = State(initialValue: text.wrappedValue)
     }
-
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                ZStack(alignment: .topLeading) {
-                    if text.isEmpty {
-                        Text("Leave your note…")
-                            .foregroundColor(.secondary)
-                            .padding(8)
+        VStack(spacing: 0) {
+            HStack {
+                Button("common.cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .foregroundColor(.red)
+                .textCase(nil)
+                Spacer()
+                Text("detail.noteSection.title")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                Spacer()
+                Button("common.save") {
+                    text = editableText
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .fontWeight(.bold)
+                .textCase(nil)
+            }
+            .padding()
+            
+            Divider()
+            
+            ZStack(alignment: .topLeading) {
+                TextEditor(text: $editableText)
+                    .padding(4)
+                    .focused($isFocused)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.isFocused = true
+                        }
                     }
-                    TextEditor(text: $text)
-                        .padding(4)
-                        .onChange(of: text) {
-                            if text.count > maxCharacters {
-                                text = String(text.prefix(maxCharacters))
+                    .onChange(of: editableText) {
+                        if editableText.count > maxCharacters {
+                            editableText = String(editableText.prefix(maxCharacters))
+                        }
+                    }
+                    .toolbar {
+                        if isFocused {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                CharacterCountIndicator(currentCount: editableText.count, characterLimit: maxCharacters)
                             }
                         }
-                }
-                
-                Divider()
-                HStack {
-                    let noteRemaining = maxCharacters - text.count
-                    Text("\(noteRemaining)")
-                        .font(.footnote)
-                        .fontWeight(.bold)
-                        .foregroundColor(noteRemaining < 0 ? .red : .secondary)
-                        .padding(.top, 4)
-                    Spacer()
-                }
-                .padding(.horizontal, 8)
-                .padding(.bottom, 8)
-            }
-            .navigationTitle("Edit Note")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        presentationMode.wrappedValue.dismiss()
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
             }
         }
+        .padding(.top, 12)
+        .padding(.horizontal)
     }
 }

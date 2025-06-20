@@ -51,16 +51,6 @@
         }
       }
     },
-    "Cancel" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar"
-          }
-        }
-      }
-    },
     "Close" : {
       "localizations" : {
         "pt-BR" : {
@@ -74,12 +64,50 @@
     "Começar" : {
 
     },
-    "Delete" : {
+    "common.cancel" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "common.delete" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deletar"
+          }
+        }
+      }
+    },
+    "common.save" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvar"
           }
         }
       }
@@ -220,6 +248,54 @@
         }
       }
     },
+    "detail.noteSection.contentLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your note..."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sua anotação…"
+          }
+        }
+      }
+    },
+    "detail.noteSection.footerLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feel free to leave a note about the experience you recorded, any details or thoughts you found helpful."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinta-se à vontade para deixar uma anotação sobre a experiência que você registrou, quaisquer detalhes ou pensamentos que achar úteis."
+          }
+        }
+      }
+    },
+    "detail.noteSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anotação"
+          }
+        }
+      }
+    },
     "detail.sleepStartSection.contentLabel" : {
       "localizations" : {
         "en" : {
@@ -288,9 +364,6 @@
           }
         }
       }
-    },
-    "Edit Note" : {
-
     },
     "Edit Record" : {
       "localizations" : {
@@ -1241,16 +1314,6 @@
         }
       }
     },
-    "Feel free to leave a note about the experience you had, noting whatever details or thoughts you find helpful." : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sinta-se à vontade para deixar uma anotação sobre a experiência que você teve, anotando quaisquer detalhes ou pensamentos que achar úteis."
-          }
-        }
-      }
-    },
     "Friday" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1291,9 +1354,6 @@
           }
         }
       }
-    },
-    "Leave your note…" : {
-
     },
     "Monday" : {
       "extractionState" : "manual",
@@ -1354,16 +1414,6 @@
         }
       }
     },
-    "Note" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anotação"
-          }
-        }
-      }
-    },
     "Notifications" : {
       "localizations" : {
         "pt-BR" : {
@@ -1411,16 +1461,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sábado"
-          }
-        }
-      }
-    },
-    "Save" : {
-      "localizations" : {
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salvar"
           }
         }
       }
