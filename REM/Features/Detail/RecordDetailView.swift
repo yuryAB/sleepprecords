@@ -53,12 +53,13 @@ extension RecordDetailView {
                     experienceSection
                 }
                 
-                if viewModel.visibleSections.contains(.routineMetrics) {
-                    routineMetricsSection
-                }
-                if viewModel.visibleSections.contains(.sleepMetrics) {
-                    sleepMetricsSection
-                }
+//                if viewModel.visibleSections.contains(.routineMetrics) {
+//                    routineMetricsSection
+//                }
+//
+//                if viewModel.visibleSections.contains(.sleepMetrics) {
+//                    sleepMetricsSection
+//                }
             }
             .listStyle(PlainListStyle())
             .listRowInsets(EdgeInsets(top: 2, leading: 16, bottom: 4, trailing: 16))
@@ -86,52 +87,67 @@ extension RecordDetailView {
     private var sleepStartSection: some View {
         SleepStartSectionView(
             sleepStart: $viewModel.sleepStart,
-            locale: viewModel.currentLocale
+            locale: viewModel.currentLocale,
+            onRemove: { viewModel.hideSection(.sleepStart) }
         )
     }
     
     private var noteSection: some View {
         NoteSectionView(
             note: $viewModel.note,
-            characterLimit: viewModel.noteCharacterLimit
+            characterLimit: viewModel.noteCharacterLimit,
+            onRemove: { viewModel.hideSection(.note) }
         )
     }
     
     private var experienceSection: some View {
         ExperienceSectionView(
             selectedExperiences: $viewModel.selectedExperiences,
-            showingPicker: $viewModel.showExperienceSelector
+            showingPicker: $viewModel.showExperienceSelector,
+            onRemove: { viewModel.hideSection(.experience) }
         )
     }
     
     private var paralysisDurationSection: some View {
         ParalysisDurationSectionView(
-            selectedDuration: $viewModel.selectedParalysisDuration
+            selectedDuration: $viewModel.selectedParalysisDuration,
+            onRemove: { viewModel.hideSection(.paralysisDuration) }
+        )
+    }
+    
+    private var routineMetricsSection: some View {
+        RoutineMetricsSectionView(
+            routineMetrics: $viewModel.routineMetrics,
+            onRemove: { viewModel.hideSection(.experience) }
         )
     }
     
     private var actionSection: some View {
         Section {
-            HStack {
-                Spacer()
-                Button("Delete record", role: .destructive) {
+            HStack(spacing: 16) {
+                Button(role: .destructive) {
                     viewModel.showDeleteConfirmation = true
+                } label: {
+                    Label("Delete record", systemImage: "trash")
                 }
+                .buttonStyle(.bordered)
+                .tint(.red.opacity(0.7))
+
                 Spacer()
-                Button("common.save") {
+
+                Button {
                     AppLog.info(.detail, "User tapped Save for record id: \(record.id)")
                     viewModel.save(record: record, context: context)
                     dismiss()
+                } label: {
+                    Label("common.save", systemImage: "checkmark.circle.fill")
                 }
+                .buttonStyle(.bordered)
+                .tint(.awake)
                 .disabled(!viewModel.canSave(for: record))
-                Spacer()
             }
-        }
-    }
-    
-    private var routineMetricsSection: some View {
-        HStack {
-            Color.white
+            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
         }
     }
     

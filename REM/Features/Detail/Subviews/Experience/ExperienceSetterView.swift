@@ -14,7 +14,7 @@ struct ExperienceSetterView: View {
     var body: some View {
         VStack(spacing: 0) {
             if selectedExperiences.isEmpty {
-                Text("detail.experienceeSectionSetter.title")//Your Experiences")
+                Text("detail.experienceeSectionSetter.title")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             }

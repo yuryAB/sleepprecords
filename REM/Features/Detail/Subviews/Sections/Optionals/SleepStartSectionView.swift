@@ -11,16 +11,17 @@ import SwiftUI
 struct SleepStartSectionView: View {
     @Binding var sleepStart: Date
     let locale: Locale
+    let onRemove: (() -> Void)
     
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section(header: header) {
             content
         }
-        
     }
     
     private var header: some View {
         HStack {
+            removeButton
             title
             Spacer()
         }
@@ -35,6 +36,18 @@ struct SleepStartSectionView: View {
     private var footer: some View {
         Text("detail.sleepStartSection.footerLabel")
             .font(.footnote)
+    }
+    
+    private var removeButton: some View {
+        Button(action: {
+            withAnimation {
+                onRemove()
+            }
+        }) {
+            Image(systemName: "minus")
+                .font(.title2)
+                .foregroundStyle(.dormant)
+        }
     }
     
     private var content: some View {

@@ -21,7 +21,7 @@ final class RecordDetailViewModel: ObservableObject {
     @Published var note: String = ""
     @Published var selectedExperiences: [Experience] = []
     @Published var selectedParalysisDuration: ParalysisDuration = .notSure
-
+    @Published var routineMetrics: RoutineMetrics = RoutineMetrics()
     @Published var visibleSections: Set<RecordDetailSection> = Set(RecordDetailSection.allCases)
 
     let nameCharacterLimit = 30
@@ -76,12 +76,12 @@ final class RecordDetailViewModel: ObservableObject {
         if record.paralysisDuration != nil {
             sections.insert(.paralysisDuration)
         }
-        if record.routineMetrics != nil {
-            sections.insert(.routineMetrics)
-        }
-        if record.sleepMetrics != nil {
-            sections.insert(.sleepMetrics)
-        }
+//        if record.routineMetrics != nil {
+//            sections.insert(.routineMetrics)
+//        }
+//        if record.sleepMetrics != nil {
+//            sections.insert(.sleepMetrics)
+//        }
         visibleSections = sections
     }
 
@@ -147,5 +147,9 @@ final class RecordDetailViewModel: ObservableObject {
 
     func getRecordName(for date: Date) -> String {
         RecordNameManager.generateRecordName(for: date)
+    }
+    
+    func hideSection(_ section: RecordDetailSection) {
+        visibleSections.remove(section)
     }
 }

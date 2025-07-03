@@ -255,6 +255,7 @@
       }
     },
     "detail.experienceeSectionPicker.descriptionLabel" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -393,7 +394,7 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Tem uma noção de quanto tempo durou a paralisia? Adicione no registro."
           }
         }
@@ -414,6 +415,12 @@
           }
         }
       }
+    },
+    "detail.routineMetricsSection.footerLabel" : {
+
+    },
+    "detail.routineMetricsSection.title" : {
+
     },
     "detail.sleepStartSection.contentLabel" : {
       "localizations" : {
@@ -1523,19 +1530,36 @@
         }
       }
     },
+    "paralysisDuration.label.from20To30Seconds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20 Sec. - 30 Sec."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20 Seg. a 30 Seg."
+          }
+        }
+      }
+    },
     "paralysisDuration.label.from30To60Seconds" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "30 sec. – 1 min."
+            "value" : "30 Sec. – 1 Min."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "30 seg. - 1 min."
+            "value" : "30 Seg. a 1 Min."
           }
         }
       }
@@ -1546,13 +1570,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "More than 1 min."
+            "value" : "More than 1 Min."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mais de 1 min."
+            "value" : "Mais de 1 Minuto"
           }
         }
       }
@@ -1580,13 +1604,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Up to 10 sec."
+            "value" : "Up to 10 Sec."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Até 1 seg."
+            "value" : "Até 10 Segundos"
           }
         }
       }
@@ -1607,6 +1631,9 @@
           }
         }
       }
+    },
+    "Routine Metrics" : {
+
     },
     "Saturday" : {
       "extractionState" : "manual",

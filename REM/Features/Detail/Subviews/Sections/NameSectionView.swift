@@ -16,7 +16,7 @@ struct NameSectionView: View {
     let characterLimit: Int
     
     var body: some View {
-        Section(header: header,footer: footer) {
+        Section(header: header) {
             content
         }
     }

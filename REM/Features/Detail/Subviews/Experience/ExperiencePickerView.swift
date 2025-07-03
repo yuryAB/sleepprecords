@@ -31,7 +31,6 @@ struct ExperiencePickerView: View {
                 Spacer()
 
                 Text("detail.experienceeSectionSetter.title")
-                    .font(.footnote)
                     .foregroundColor(.gray)
 
                 Spacer()
@@ -49,14 +48,14 @@ struct ExperiencePickerView: View {
 
             Divider()
 
-            VStack(alignment: .leading) {
-                Text("detail.experienceeSectionPicker.descriptionLabel")//Do you remember experiencing any of these at that moment?")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal)
-
+            VStack() {
                 List {
+                    Text("detail.experienceeSection.footerLabel")
+                        .font(.footnote)
+                        .fontWeight(.bold)
+                        .foregroundColor(.secondary)
+                        .padding()
+                    
                     ForEach(Experience.allCases) { feeling in
                         ExperienceRowView(Experience: feeling, selectedExperiences: $tempSelectedExperiences)
                     }

@@ -12,6 +12,7 @@ struct NoteSectionView: View {
     @Binding var note: String
     @State private var showEditor: Bool = false
     let characterLimit: Int
+    let onRemove: (() -> Void)
     
     var body: some View {
         Section(header: header, footer: footer) {
@@ -21,6 +22,7 @@ struct NoteSectionView: View {
     
     private var header: some View {
         HStack {
+            removeButton
             title
             Spacer()
             actionButton
@@ -46,6 +48,18 @@ struct NoteSectionView: View {
             .sheet(isPresented: $showEditor) {
                 NoteTextEditView(text: $note, maxCharacters: characterLimit)
             }
+    }
+    
+    private var removeButton: some View {
+        Button(action: {
+            withAnimation {
+                onRemove()
+            }
+        }) {
+            Image(systemName: "minus")
+                .font(.title2)
+                .foregroundStyle(.dormant)
+        }
     }
     
     private var content: some View {

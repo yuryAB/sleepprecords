@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ParalysisDurationSectionView: View {
     @Binding var selectedDuration: ParalysisDuration
+    let onRemove: (() -> Void)
 
-    init(selectedDuration: Binding<ParalysisDuration>) {
+    init(selectedDuration: Binding<ParalysisDuration>, onRemove: @escaping () -> Void) {
         let originalDuration = selectedDuration.wrappedValue
         let initialDuration = originalDuration
         self._selectedDuration = Binding<ParalysisDuration>(
@@ -19,6 +20,7 @@ struct ParalysisDurationSectionView: View {
                 selectedDuration.wrappedValue = newValue
             }
         )
+        self.onRemove = onRemove
     }
 
     var body: some View {
@@ -29,6 +31,7 @@ struct ParalysisDurationSectionView: View {
     
     private var header: some View {
         HStack {
+            removeButton
             title
             Spacer()
         }
@@ -44,6 +47,18 @@ struct ParalysisDurationSectionView: View {
         Text("detail.paralysisDurationSection.footerLabel")
             .font(.footnote)
             .foregroundColor(.gray)
+    }
+    
+    private var removeButton: some View {
+        Button(action: {
+            withAnimation {
+                onRemove()
+            }
+        }) {
+            Image(systemName: "minus")
+                .font(.title2)
+                .foregroundStyle(.dormant)
+        }
     }
     
     private var content: some View {

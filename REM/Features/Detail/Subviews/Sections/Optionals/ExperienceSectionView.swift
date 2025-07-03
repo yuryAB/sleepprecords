@@ -11,15 +11,17 @@ import SwiftUI
 struct ExperienceSectionView: View {
     @Binding var selectedExperiences: [Experience]
     @Binding var showingPicker: Bool
+    let onRemove: (() -> Void)
     
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section(header: header) {
             content
         }
     }
     
     private var header: some View {
         HStack {
+            removeButton
             title
             Spacer()
             actionButton
@@ -48,6 +50,18 @@ struct ExperienceSectionView: View {
                     .font(.title2)
                     .foregroundStyle(.awake)
             }
+    }
+    
+    private var removeButton: some View {
+        Button(action: {
+            withAnimation {
+                onRemove()
+            }
+        }) {
+            Image(systemName: "minus")
+                .font(.title2)
+                .foregroundStyle(.dormant)
+        }
     }
     
     private var content: some View {
