@@ -5,7 +5,14 @@
       "shouldTranslate" : false
     },
     "%lld" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "Afternoon" : {
       "extractionState" : "manual",
@@ -17,9 +24,6 @@
           }
         }
       }
-    },
-    "Anterior" : {
-
     },
     "App language" : {
       "localizations" : {
@@ -50,9 +54,6 @@
           }
         }
       }
-    },
-    "Começar" : {
-
     },
     "common.cancel" : {
       "localizations" : {
@@ -130,6 +131,70 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecionar"
+          }
+        }
+      }
+    },
+    "creatorNote.buttonLabel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s go"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vamos lá"
+          }
+        }
+      }
+    },
+    "creatorNote.subheadline" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A word from the creator"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma palavra do criador"
+          }
+        }
+      }
+    },
+    "creatorNote.text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Records was created to provide a place for you to log every sleep paralysis episode: the date, sensations, emotions, and even any hallucinations.\n\nBy recording your experiences, you can identify patterns and triggers that might otherwise go unnoticed, and keep an organized history to share with healthcare professionals.\n\nThis app doesn’t promise a cure but serves as a tool for self-awareness, helping you understand what happens during these episodes.\n\nThank you for using Sleep Records. I hope it makes a meaningful difference in your self-care journey."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Records foi criado com a finalidade de oferecer um lugar para você registrar cada episódio de paralisia do sono: data, sensações, emoções e até alucinações, quando ocorrerem.\n\nAo anotar suas experiências, você pode identificar padrões e gatilhos que passam despercebidos, além de manter um histórico organizado para compartilhar com profissionais de saúde.\n\nEste app não promete cura, mas funciona como uma ferramenta de autoconhecimento, ajudando você a entender melhor o que acontece durante esses episódios.\n\nObrigado por usar o Sleep Records. Espero que ele faça a diferença na sua jornada de autocuidado."
+          }
+        }
+      }
+    },
+    "creatorNote.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Sleep Records"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo ao Sleep Records"
           }
         }
       }
@@ -250,23 +315,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Experiência"
-          }
-        }
-      }
-    },
-    "detail.experienceeSectionPicker.descriptionLabel" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Do you remember experiencing any of these at that moment?"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você se lembra de ter tido alguma dessas experiências naquele momento?"
           }
         }
       }
@@ -417,10 +465,24 @@
       }
     },
     "detail.routineMetricsSection.footerLabel" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métricas de rotina"
+          }
+        }
+      }
     },
     "detail.routineMetricsSection.title" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métricas de sono"
+          }
+        }
+      }
     },
     "detail.sleepStartSection.contentLabel" : {
       "localizations" : {
@@ -1615,12 +1677,6 @@
         }
       }
     },
-    "Próximo" : {
-
-    },
-    "Pular" : {
-
-    },
     "records on" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1633,7 +1689,14 @@
       }
     },
     "Routine Metrics" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Métricas de Rotina"
+          }
+        }
+      }
     },
     "Saturday" : {
       "extractionState" : "manual",

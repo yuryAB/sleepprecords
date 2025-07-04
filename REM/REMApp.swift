@@ -22,11 +22,16 @@ struct REMApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    @AppStorage("hasSeenCreatorNote") private var hasSeenCreatorNote = false
 
     var body: some Scene {
         WindowGroup {
-            FeedView()
-            //OnboardingView()
+            if hasSeenCreatorNote {
+                FeedView()
+            } else {
+                CreatorNoteView()
+            }
         }
         .modelContainer(sharedModelContainer)
     }

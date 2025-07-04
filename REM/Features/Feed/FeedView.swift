@@ -43,6 +43,12 @@ struct FeedView: View {
     
     var nonRecordNotice: some View {
         VStack(spacing: 12) {
+            Image("SleeppRecordsLaunch")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .padding(.top)
+            
             Text("No records yet.")
                 .font(.title3)
                 .fontWeight(.bold)
@@ -72,7 +78,7 @@ struct FeedView: View {
     var sortOrderToolbarItem: some ToolbarContent {
         ToolbarItemGroup(placement: .navigationBarTrailing) {
             FeedOptions(viewModel: viewModel)
-            addMockRecordsButton
+            //addMockRecordsButton
         }
     }
 }

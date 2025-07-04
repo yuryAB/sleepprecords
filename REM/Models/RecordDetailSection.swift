@@ -9,9 +9,9 @@ import Foundation
 
 enum RecordDetailSection: CaseIterable, Hashable {
     case sleepStart
+    case paralysisDuration
     case note
     case experience
-    case paralysisDuration
     //case routineMetrics
     //case sleepMetrics
 
