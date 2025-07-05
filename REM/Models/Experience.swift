@@ -13,28 +13,28 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
     case bodyPressure
     case calm
     case compression
+    case crawlingBiting
+    case drowningSinking
     case externalObstruction
     case externalTouch
     case falling
+    case falsePresence
     case floating
+    case gustatoryHallucination
     case helplessness
-    case tingling
     case musclePain
     case nasalObstruction
+    case olfactoryHallucination
     case oralObstruction
+    case outOfBodyExperience
     case palpitation
     case panic
-    case falsePresence
+    case proprioceptiveDistortion
+    case thermalSensation
     case throatTightness
     case timeDistortion
+    case tingling
     case visualHallucination
-    case crawlingBiting
-    case drowningSinking
-    case proprioceptiveDistortion
-    case olfactoryHallucination
-    case gustatoryHallucination
-    case thermalSensation
-    case outOfBodyExperience
  
     var id: String { self.rawValue }
     
