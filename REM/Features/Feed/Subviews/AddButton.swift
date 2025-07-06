@@ -13,11 +13,13 @@ struct AddButton: View {
     
     @State private var pillOffset: CGFloat = 0
     @State private var thresholdReached: Bool = false
+    private let shimmerDuration: Double = 3
+    private let shimmerDelay: Double = 2
     
     var body: some View {
         ZStack(alignment: .leading) {
             backgroundView
-            pill
+            SwipePillView(threshold: threshold, action: action)
         }
         .padding(.horizontal)
     }
@@ -27,79 +29,15 @@ struct AddButton: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(Color.grayREM)
             
-            HStack(spacing: 45) {
-                
-                ForEach(0..<5, id: \.self) { _ in
-                    ChevronRight()
-                        .frame(width: 15, height: 23)
-                        .foregroundColor(Color.grayREM)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            .shimmering(
-                duration: 2,
-                delay: 4.0,
-                gradientColors:[
-                    .awake,
-                    .dormant
-                ],
-                angle: 0,
-                direction: .horizontal,
-                beamWidthMultiplier: 1.0
-            )
-            
             Text("Swipe to record")
-                .font(.subheadline)
-                .fontWeight(.heavy)
-                .foregroundColor(.primary)
+                .font(.subheadline).bold()
+                .padding(.horizontal, 6)
+                .foregroundStyle(Color.primary)
         }
         .frame(height: 56)
         .frame(maxWidth: .infinity)
     }
-    
-    var pill: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .fill(
-                RadialGradient(
-                    gradient: Gradient(colors: [
-                        Color.awake,
-                        Color.dormant]),
-                    center: .leading,
-                    startRadius: -30,
-                    endRadius: 60
-                )
-            )
-            .frame(width: 20, height: 50)
-            .offset(x: pillOffset)
-            .gesture(
-                DragGesture()
-                    .onChanged { value in
-                        guard !thresholdReached else { return }
-                        let translation = value.translation.width
-                        let newOffset = max(0, min(translation, threshold))
-                        pillOffset = newOffset
-                        
-                        if newOffset >= threshold {
-                            thresholdReached = true
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            withAnimation(.spring()) {
-                                pillOffset = 0
-                            }
-                            action()
-                        }
-                    }
-                    .onEnded { _ in
-                        if !thresholdReached {
-                            withAnimation(.spring()) {
-                                pillOffset = 0
-                            }
-                        }
-                        thresholdReached = false
-                    }
-            )
-    }
 }
-
 
 struct ChevronRight: Shape {
     func path(in rect: CGRect) -> Path {
