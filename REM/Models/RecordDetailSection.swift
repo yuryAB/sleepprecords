@@ -12,8 +12,8 @@ enum RecordDetailSection: CaseIterable, Hashable {
     case paralysisDuration
     case note
     case experience
-    //case routineMetrics
-    //case sleepMetrics
+    case routineMetrics
+    case sleepMetrics
 
     var title: String {
         switch self {
@@ -25,10 +25,10 @@ enum RecordDetailSection: CaseIterable, Hashable {
             return "detail.experienceeSection.title".localized
         case .paralysisDuration:
             return "detail.paralysisDurationSection.title".localized
-//        case .routineMetrics:
-//            return "Routine Metrics"
-//        case .sleepMetrics:
-//            return "Sleep Metrics"
+        case .routineMetrics:
+            return "Routine Metrics"
+        case .sleepMetrics:
+            return "Sleep Metrics"
         }
     }
     
@@ -42,10 +42,10 @@ enum RecordDetailSection: CaseIterable, Hashable {
             return "face.smiling"
         case .paralysisDuration:
             return "hourglass"
-//        case .routineMetrics:
-//            return "chart.bar.xaxis"
-//        case .sleepMetrics:
-//            return "waveform.path.ecg"
+        case .routineMetrics:
+            return "chart.bar.xaxis"
+        case .sleepMetrics:
+            return "waveform.path.ecg"
         }
     }
 }

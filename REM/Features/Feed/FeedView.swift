@@ -15,16 +15,18 @@ struct FeedView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 0) {
                 if viewModel.records.isEmpty {
                     nonRecordNotice
                 } else {
                     RecordListView(viewModel: viewModel)
                 }
-                
-                AddButton(threshold: 300) {
-                    AppLog.info(.feed, "AddButton tapped, adding new record")
-                    viewModel.addRecord(context: context)
+
+                AppBottomBar {
+                    AddButton(threshold: 300) {
+                        AppLog.info(.feed, "AddButton tapped, adding new record")
+                        viewModel.addRecord(context: context)
+                    }
                 }
             }
             .animation(.easeInOut, value: viewModel.records)
@@ -76,7 +78,7 @@ struct FeedView: View {
     }
 
     var sortOrderToolbarItem: some ToolbarContent {
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ToolbarItemGroup(placement: .topBarTrailing) {
             FeedOptions(viewModel: viewModel)
             //addMockRecordsButton
         }

@@ -1,15 +1,14 @@
 //
-//  RoutineMetricsSectionView.swift
+//  SleepMetricsSectionView.swift
 //  REM
 //
-//  Created by yury antony on 20/06/25.
+//  Created by yury antony on 26/03/26.
 //
 
 import SwiftUI
 
-struct RoutineMetricsSectionView: View {
-    @Binding var routineMetrics: RoutineMetrics
-    @State private var showEditor: Bool = false
+struct SleepMetricsSectionView: View {
+    @Binding var sleepMetrics: SleepMetrics
     let isEnabled: Bool
     let onToggle: () -> Void
 
@@ -26,14 +25,11 @@ struct RoutineMetricsSectionView: View {
             toggleButton
             title
             Spacer()
-            if isEnabled {
-                actionButton
-            }
         }
     }
 
     private var title: some View {
-        Text("detail.routineMetricsSection.title")
+        Text("Sleep Metrics")
             .font(.footnote)
             .foregroundColor(.gray)
     }
@@ -50,28 +46,12 @@ struct RoutineMetricsSectionView: View {
         }
     }
 
-    private var actionButton: some View {
-        Button {
-            withAnimation(.default) {
-                showEditor.toggle()
-            }
-        } label: {
-            Image(systemName: "square.and.pencil")
-                .font(.title2)
-                .foregroundStyle(.awake)
-        }
-        .sheet(isPresented: $showEditor) {
-            RoutineMetricsView(routineMetrics: $routineMetrics)
-        }
-    }
-
     private var content: some View {
         VStack(alignment: .leading, spacing: 8) {
-            metricRow("Stress level", routineMetrics.stressLevel)
-            metricRow("Caffeine", routineMetrics.caffeineConsumption)
-            metricRow("Alcohol", routineMetrics.alcoholConsumption)
-            metricRow("Physical activity", routineMetrics.physicalActivityLevel)
-            metricRow("Screen use", routineMetrics.screenUseLevel)
+            metricRow("Sleep quality", sleepMetrics.sleepQuality)
+            metricRow("Noise level", sleepMetrics.noiseLevel)
+            metricRow("Light level", sleepMetrics.lightLevel)
+            metricRow("Temperature", sleepMetrics.temperatureLevel)
         }
         .padding(.vertical, 4)
     }
@@ -88,7 +68,7 @@ struct RoutineMetricsSectionView: View {
     private var footer: some View {
         Group {
             if !isEnabled {
-                Text("detail.routineMetricsSection.footerLabel")
+                Text("Sleep Metrics")
                     .font(.footnote)
                     .foregroundColor(.primary)
             }

@@ -5,7 +5,6 @@
 //  Created by yury antony on 07/06/25.
 //
 
-
 import SwiftUI
 
 struct NameSectionView: View {
@@ -14,13 +13,13 @@ struct NameSectionView: View {
     @FocusState private var isFocused: Bool
     let computeAutoName: () -> String
     let characterLimit: Int
-    
+
     var body: some View {
         Section(header: header) {
             content
         }
     }
-    
+
     private var header: some View {
         HStack {
             title
@@ -28,13 +27,13 @@ struct NameSectionView: View {
             actionButton
         }
     }
-    
+
     private var title: some View {
         Text("detail.nameSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
-    
+
     private var actionButton: some View {
         Group {
             Text("detail.nameSection.trackDateLabel")
@@ -43,12 +42,7 @@ struct NameSectionView: View {
                 .tint(.awake)
         }
     }
-    
-    private var footer: some View {
-        Text("detail.nameSection.footerLabel")
-            .font(.footnote)
-    }
-    
+
     private var content: some View {
         VStack {
             TextField("detail.nameSection.title", text: $name)

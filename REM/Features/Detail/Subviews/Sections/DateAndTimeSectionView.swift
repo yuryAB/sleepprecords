@@ -10,44 +10,37 @@ import SwiftUI
 struct DateAndTimeSectionView: View {
     @Binding var date: Date
     let locale: Locale
-    
+
     var body: some View {
         Section(header: header) {
             content
         }
-        
     }
-    
+
     private var header: some View {
         HStack {
             title
             Spacer()
         }
     }
-    
+
     private var title: some View {
         Text("detail.dateAndTimeSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
-    
+
     private var content: some View {
         VStack(spacing: 15) {
-            HStack() {
-                Image(systemName: "calendar")
-                    .foregroundStyle(.primary)
-                DatePicker("detail.dateAndTimeSection.dateLabel",
-                           selection: $date,
-                           displayedComponents: .date)
-                .environment(\.locale, locale)
-            }
-            
-            HStack() {
-                Image(systemName: "clock")
-                    .foregroundStyle(.primary)
+            DatePicker("detail.dateAndTimeSection.dateLabel",
+                       selection: $date,
+                       displayedComponents: .date)
+            .environment(\.locale, locale)
+
+            HStack {
                 Text("detail.dateAndTimeSection.timeLabel")
                 Spacer()
-                
+
                 DatePicker("", selection: $date,
                            displayedComponents: .hourAndMinute)
                 .labelsHidden()

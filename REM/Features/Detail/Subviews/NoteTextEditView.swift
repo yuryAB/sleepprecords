@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NoteTextEditView: View {
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @Binding var text: String
     @FocusState private var isFocused: Bool
     private let maxCharacters: Int
@@ -25,7 +25,7 @@ struct NoteTextEditView: View {
         VStack(spacing: 0) {
             HStack {
                 Button("common.cancel") {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
                 .foregroundColor(.red)
                 .textCase(nil)
@@ -36,7 +36,7 @@ struct NoteTextEditView: View {
                 Spacer()
                 Button("common.save") {
                     text = editableText
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }
                 .fontWeight(.bold)
                 .textCase(nil)
