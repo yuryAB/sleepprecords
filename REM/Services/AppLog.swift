@@ -8,8 +8,6 @@
 import os
 import Foundation
 
-extension Logger: @unchecked Sendable {}
-
 public enum LogLevel {
     case debug, info, error
 }
