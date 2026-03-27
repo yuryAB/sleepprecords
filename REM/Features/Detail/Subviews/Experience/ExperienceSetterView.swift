@@ -15,8 +15,8 @@ struct ExperienceSetterView: View {
         VStack(spacing: 0) {
             if selectedExperiences.isEmpty {
                 Text("detail.experienceeSectionSetter.title")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
 
             if !selectedExperiences.isEmpty {
@@ -36,7 +36,6 @@ struct ExperienceSetterView: View {
                         .frame(maxWidth: .infinity, minHeight: 60)
                     }
                 }
-                .padding(.vertical, 12)
             }
         }
         .sheet(isPresented: $showingPicker) {

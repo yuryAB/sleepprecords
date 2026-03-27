@@ -14,10 +14,17 @@ struct ExperienceSectionView: View {
     let onToggle: () -> Void
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.experienceeSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -69,13 +76,4 @@ struct ExperienceSectionView: View {
         )
     }
 
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("detail.experienceeSection.footerLabel")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
-    }
 }

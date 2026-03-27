@@ -26,10 +26,17 @@ struct ParalysisDurationSectionView: View {
     }
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.paralysisDurationSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -45,16 +52,6 @@ struct ParalysisDurationSectionView: View {
         Text("detail.paralysisDurationSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
-    }
-
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("detail.paralysisDurationSection.footerLabel")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
     }
 
     private var toggleButton: some View {

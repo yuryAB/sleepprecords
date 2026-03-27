@@ -27,10 +27,17 @@ struct NoteSectionView: View {
     }
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.noteSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -83,21 +90,10 @@ struct NoteSectionView: View {
             if note.isEmpty {
                 Text("detail.noteSection.contentLabel")
                     .foregroundColor(.secondary.opacity(0.5))
-                    .padding(8)
             }
             Text(note)
-                .padding(8)
                 .frame(maxWidth: .infinity, minHeight: 30, alignment: .topLeading)
         }
     }
 
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("detail.noteSection.footerLabel")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
-    }
 }

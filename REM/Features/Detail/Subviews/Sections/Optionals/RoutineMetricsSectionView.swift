@@ -9,15 +9,21 @@ import SwiftUI
 
 struct RoutineMetricsSectionView: View {
     @Binding var routineMetrics: RoutineMetrics
-    @State private var showEditor: Bool = false
     let isEnabled: Bool
     let onToggle: () -> Void
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.routineMetricsSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -26,9 +32,6 @@ struct RoutineMetricsSectionView: View {
             toggleButton
             title
             Spacer()
-            if isEnabled {
-                actionButton
-            }
         }
     }
 
@@ -50,48 +53,29 @@ struct RoutineMetricsSectionView: View {
         }
     }
 
-    private var actionButton: some View {
-        Button {
-            withAnimation(.default) {
-                showEditor.toggle()
-            }
-        } label: {
-            Image(systemName: "square.and.pencil")
-                .font(.title2)
-                .foregroundStyle(.awake)
-        }
-        .sheet(isPresented: $showEditor) {
-            RoutineMetricsView(routineMetrics: $routineMetrics)
-        }
-    }
-
     private var content: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            metricRow("Stress level", routineMetrics.stressLevel)
-            metricRow("Caffeine", routineMetrics.caffeineConsumption)
-            metricRow("Alcohol", routineMetrics.alcoholConsumption)
-            metricRow("Physical activity", routineMetrics.physicalActivityLevel)
-            metricRow("Screen use", routineMetrics.screenUseLevel)
+        VStack(alignment: .leading, spacing: 16) {
+            CompactLevelSlider(
+                label: "detail.routineMetricsSection.stressLevel",
+                value: $routineMetrics.stressLevel
+            )
+            CompactLevelSlider(
+                label: "detail.routineMetricsSection.caffeineConsumption",
+                value: $routineMetrics.caffeineConsumption
+            )
+            CompactLevelSlider(
+                label: "detail.routineMetricsSection.alcoholConsumption",
+                value: $routineMetrics.alcoholConsumption
+            )
+            CompactLevelSlider(
+                label: "detail.routineMetricsSection.physicalActivityLevel",
+                value: $routineMetrics.physicalActivityLevel
+            )
+            CompactLevelSlider(
+                label: "detail.routineMetricsSection.screenUseLevel",
+                value: $routineMetrics.screenUseLevel
+            )
         }
-        .padding(.vertical, 4)
-    }
-
-    private func metricRow(_ label: String, _ value: Int?) -> some View {
-        HStack {
-            Text(label)
-            Spacer()
-            Text(value.map(String.init) ?? "-")
-                .foregroundColor(.secondary)
-        }
-    }
-
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("detail.routineMetricsSection.footerLabel")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
+        .padding(.bottom, 8)
     }
 }

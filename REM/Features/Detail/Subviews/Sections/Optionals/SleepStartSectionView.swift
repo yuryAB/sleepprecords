@@ -14,10 +14,17 @@ struct SleepStartSectionView: View {
     let onToggle: () -> Void
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.sleepStartSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -33,16 +40,6 @@ struct SleepStartSectionView: View {
         Text("detail.sleepStartSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
-    }
-
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("detail.sleepStartSection.footerLabel")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
     }
 
     private var toggleButton: some View {

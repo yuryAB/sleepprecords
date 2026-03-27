@@ -13,10 +13,17 @@ struct SleepMetricsSectionView: View {
     let onToggle: () -> Void
 
     var body: some View {
-        Section(header: header, footer: footer) {
+        Section {
             content
-                .opacity(isEnabled ? 1 : 0.35)
-                .disabled(!isEnabled)
+                .optionalSection(isEnabled: isEnabled)
+        } header: {
+            header
+        } footer: {
+            if !isEnabled {
+                Text("detail.sleepMetricsSection.footerLabel")
+                    .font(.footnote)
+                    .foregroundColor(.primary)
+            }
         }
     }
 
@@ -29,7 +36,7 @@ struct SleepMetricsSectionView: View {
     }
 
     private var title: some View {
-        Text("Sleep Metrics")
+        Text("detail.sleepMetricsSection.title")
             .font(.footnote)
             .foregroundColor(.gray)
     }
@@ -47,31 +54,24 @@ struct SleepMetricsSectionView: View {
     }
 
     private var content: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            metricRow("Sleep quality", sleepMetrics.sleepQuality)
-            metricRow("Noise level", sleepMetrics.noiseLevel)
-            metricRow("Light level", sleepMetrics.lightLevel)
-            metricRow("Temperature", sleepMetrics.temperatureLevel)
+        VStack(alignment: .leading, spacing: 16) {
+            CompactLevelSlider(
+                label: "detail.sleepMetricsSection.sleepQuality",
+                value: $sleepMetrics.sleepQuality
+            )
+            CompactLevelSlider(
+                label: "detail.sleepMetricsSection.noiseLevel",
+                value: $sleepMetrics.noiseLevel
+            )
+            CompactLevelSlider(
+                label: "detail.sleepMetricsSection.lightLevel",
+                value: $sleepMetrics.lightLevel
+            )
+            CompactLevelSlider(
+                label: "detail.sleepMetricsSection.temperatureLevel",
+                value: $sleepMetrics.temperatureLevel
+            )
         }
-        .padding(.vertical, 4)
-    }
-
-    private func metricRow(_ label: String, _ value: Int?) -> some View {
-        HStack {
-            Text(label)
-            Spacer()
-            Text(value.map(String.init) ?? "-")
-                .foregroundColor(.secondary)
-        }
-    }
-
-    private var footer: some View {
-        Group {
-            if !isEnabled {
-                Text("Sleep Metrics")
-                    .font(.footnote)
-                    .foregroundColor(.primary)
-            }
-        }
+        .padding(.bottom, 8)
     }
 }

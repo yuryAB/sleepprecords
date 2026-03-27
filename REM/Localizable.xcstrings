@@ -516,8 +516,110 @@
         }
       }
     },
+    "detail.routineMetricsSection.alcoholConsumption" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alcohol"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Álcool"
+          }
+        }
+      }
+    },
+    "detail.routineMetricsSection.caffeineConsumption" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caffeine"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cafeína"
+          }
+        }
+      }
+    },
     "detail.routineMetricsSection.footerLabel" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Track habits that may influence your sleep quality."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registre hábitos que podem influenciar a qualidade do seu sono."
+          }
+        }
+      }
+    },
+    "detail.routineMetricsSection.physicalActivityLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Physical activity"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atividade física"
+          }
+        }
+      }
+    },
+    "detail.routineMetricsSection.screenUseLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screen use"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uso de tela"
+          }
+        }
+      }
+    },
+    "detail.routineMetricsSection.stressLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stress level"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nível de estresse"
+          }
+        }
+      }
+    },
+    "detail.routineMetricsSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Routine Metrics"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -526,8 +628,94 @@
         }
       }
     },
-    "detail.routineMetricsSection.title" : {
+    "detail.sleepMetricsSection.footerLabel" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate the conditions of your sleep environment."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalie as condições do ambiente em que você dormiu."
+          }
+        }
+      }
+    },
+    "detail.sleepMetricsSection.lightLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light level"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nível de luz"
+          }
+        }
+      }
+    },
+    "detail.sleepMetricsSection.noiseLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noise level"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nível de ruído"
+          }
+        }
+      }
+    },
+    "detail.sleepMetricsSection.sleepQuality" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep quality"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qualidade do sono"
+          }
+        }
+      }
+    },
+    "detail.sleepMetricsSection.temperatureLevel" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperature"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperatura"
+          }
+        }
+      }
+    },
+    "detail.sleepMetricsSection.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Metrics"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1742,6 +1930,7 @@
       }
     },
     "Routine Metrics" : {
+      "extractionState" : "stale",
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
@@ -1761,10 +1950,6 @@
           }
         }
       }
-    },
-    "Sleep Metrics" : {
-      "comment" : "A label describing the content of the section.",
-      "isCommentAutoGenerated" : true
     },
     "Sleepp Records" : {
       "localizations" : {
