@@ -44,7 +44,7 @@ Because records may describe sensitive personal experiences, changes to persiste
 4. Choose an iOS simulator or device running iOS 18.0 or newer.
 5. Build and run from Xcode.
 
-The repository name is `splepprecords`, while the current Xcode project and target are still named `REM`. The app's product naming is being migrated separately from the repository rename.
+The repository name is `sleepprecords`, while the current Xcode project and target are still named `REM`. The app's product naming is being migrated separately from the repository rename.
 
 ## Project Structure
 
