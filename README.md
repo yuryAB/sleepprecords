@@ -4,6 +4,10 @@ Sleep Records is an iOS app for logging sleep paralysis episodes. It gives peopl
 
 The app is designed as a self-knowledge tool. It does not diagnose, treat, prevent, or cure any medical condition. Records can be useful as a personal history or as supporting context in conversations with qualified healthcare professionals.
 
+## Project Purpose
+
+The purpose of Sleep Records is to encourage adoption among people who experience recurring sleep paralysis episodes. People who have a single isolated episode may not need a dedicated logging tool; the app is intended for those who experience this condition repeatedly and can benefit from recording patterns over time. By making it simple and respectful to record episodes, the project aims to help as many people with recurring episodes as possible use the app and, with explicit consent in future dataset features, contribute to a broader data foundation for research and studies about sleep paralysis.
+
 ## Features
 
 - Create sleep paralysis records with date, time, and an editable name.
