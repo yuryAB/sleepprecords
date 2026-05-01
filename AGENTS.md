@@ -2,16 +2,15 @@
 
 ## General Rules
 
-- **Never run builds** (`xcodebuild`, etc.). The user does that manually.
-- **Never create worktrees**.
-- **Always work on the branch indicated by the user**.
-- **Do not create, switch, or choose branches on your own**. If another branch is needed, wait for explicit instructions from the user.
+- **Do not run builds** (`xcodebuild`, etc.) unless a maintainer explicitly requests it.
+- **Do not create worktrees** unless a maintainer explicitly requests it.
+- **Work on the active branch** unless a maintainer explicitly asks for a different branch.
+- **Do not create, switch, or choose branches on your own**. If another branch is needed, wait for explicit maintainer instructions.
 
 ## Commits
 
-- When the user types `cap`, it means: create a commit and push it.
-- Before any commit request, including `cap`, summarize the branch changes by describing product behavior, business rules, and UX decisions.
-- This product/UX summary is the default standard for all commit-related responses, not a special case only for `cap`.
+- Before preparing a commit, summarize the branch changes by describing product behavior, business rules, and UX decisions.
+- This product/UX summary is the default standard for all commit-related responses.
 - Do not focus the summary on low-level technical details unless they are necessary to explain user-facing behavior, business impact, or UX impact.
 - Commit titles and messages must follow the project's commit language convention and must be imperative and scoped.
 - Commit titles should stay concise, but clarity about product impact matters more than being short at all costs.
