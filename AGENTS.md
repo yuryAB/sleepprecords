@@ -16,3 +16,11 @@
 - Commit titles and messages must follow the project's commit language convention and must be imperative and scoped.
 - Commit titles should stay concise, but clarity about product impact matters more than being short at all costs.
 - Preserve the project's product language for user-facing copy, screen names, and domain terms.
+
+## Pull Requests
+
+- When a maintainer asks for a pull request, create a clear title and a detailed description of what the branch changes.
+- Pull request titles and descriptions must follow the same product/UX summary standard used for commits.
+- Describe product behavior, business rules, UX decisions, and user-facing impact before implementation details.
+- Keep technical details in the description only when they are necessary to explain product behavior, risk, migration impact, or review focus.
+- Preserve the project's product language for user-facing copy, screen names, and domain terms.
