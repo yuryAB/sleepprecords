@@ -43,17 +43,15 @@ Because records may describe sensitive personal experiences, changes to persiste
 ## Getting Started
 
 1. Clone the repository.
-2. Open `REM.xcodeproj` in Xcode.
-3. Select the `REM` target.
+2. Open `sleepprecords.xcodeproj` in Xcode.
+3. Select the `sleepprecords` target.
 4. Choose an iOS simulator or device running iOS 18.0 or newer.
 5. Build and run from Xcode.
-
-The repository name is `sleepprecords`, while the current Xcode project and target are still named `REM`. The app's product naming is being migrated separately from the repository rename.
 
 ## Project Structure
 
 ```text
-REM/
+sleepprecords/
   Assets.xcassets/        App icons, launch image, and color assets
   Components/             Shared SwiftUI components
   Extensions/             Small language extensions
@@ -65,7 +63,7 @@ REM/
   Models/                 SwiftData models and domain enums
   Services/               App logging
   Localizable.xcstrings   English and Brazilian Portuguese strings
-  REMApp.swift            App entry point and SwiftData container
+  SleeppRecordsApp.swift  App entry point and SwiftData container
 ```
 
 ## Architecture
@@ -85,7 +83,7 @@ The app currently supports:
 - English
 - Brazilian Portuguese
 
-Localized strings are managed in `REM/Localizable.xcstrings`. User-facing copy, screen names, and domain terms should stay consistent with the product language already used in the app.
+Localized strings are managed in `sleepprecords/Localizable.xcstrings`. User-facing copy, screen names, and domain terms should stay consistent with the product language already used in the app.
 
 ## Contributing
 
