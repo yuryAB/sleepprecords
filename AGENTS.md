@@ -6,6 +6,7 @@
 - **Do not create worktrees** unless a maintainer explicitly requests it.
 - **Work on the active branch** unless a maintainer explicitly asks for a different branch.
 - **Do not create, switch, or choose branches on your own**. If another branch is needed, wait for explicit maintainer instructions.
+- **Read `Docs/PersistenceGuidelines.md` before any work involving local persistence**. This includes tests, additions, bug fixes, refactors, migrations, SwiftData models, local storage keys, record deletion, export/sync behavior, or anything that could affect existing user data stored on-device.
 
 ## Commits
 
