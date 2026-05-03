@@ -22,7 +22,7 @@
 ## Pull Requests
 
 - When the human responsible for the task asks for a pull request, create a clear title and a detailed description of what the branch changes.
-- **Do not include the LLM or agent name, signature, or prefix in pull request titles or descriptions** unless the human responsible for the task explicitly requests it. Avoid prefixes such as `[codex]`.
+- **Do not include any LLM, agent, model, tool, or provider name, signature, or prefix in pull request titles or descriptions** unless the human responsible for the task explicitly requests it. This applies to any agent in the open source workflow, not only this assistant. Avoid prefixes such as `[codex]`, `[claude]`, `[copilot]`, `[cursor]`, `[gemini]`, `[chatgpt]`, or similar.
 - Pull request titles and descriptions must follow the same product/UX summary standard used for commits.
 - Describe product behavior, business rules, UX decisions, and user-facing impact before implementation details.
 - Keep technical details in the description only when they are necessary to explain product behavior, risk, migration impact, or review focus.
