@@ -10,25 +10,95 @@ import SwiftData
 import os
 
 final class RecordDetailViewModel: ObservableObject {
-    // MARK: - Properties
     @Published var trackDate: Bool = false
     @Published var showDeleteConfirmation: Bool = false
     @Published var showExperienceSelector: Bool = false
-    @Published var sleepStart: Date = Date()
+    @Published var visibleSections: Set<RecordDetailSection> = []
 
     @Published var date: Date = Date()
     @Published var name: String = ""
-    @Published var note: String = ""
+
+    @Published var noteText: String = ""
+    @Published var episodeMoment: EpisodeMoment?
+    @Published var selectedParalysisDuration: ParalysisDuration?
+    @Published var bodyPosition: BodyPosition?
+    @Published var fearDistressLevel: Int?
+    @Published var fearDistressNotSure: Bool = false
+    @Published var breathingImpact: BreathingImpact?
+
     @Published var selectedExperiences: [Experience] = []
-    @Published var selectedParalysisDuration: ParalysisDuration = .notSure
-    @Published var routineMetrics: RoutineMetrics = RoutineMetrics()
-    @Published var sleepMetrics: SleepMetrics = SleepMetrics()
-    @Published var visibleSections: Set<RecordDetailSection> = Set(RecordDetailSection.allCases)
+    @Published var experienceIntensities: [Experience: Int] = [:]
+
+    @Published var sleepStart: Date?
+    @Published var wakeTime: Date?
+    @Published var estimatedSleepDuration: SleepDurationEstimate?
+    @Published var sleepQuality: Int?
+    @Published var sleepQualityNotSure: Bool = false
+    @Published var awakenings: Awakenings?
+    @Published var hadNap: Bool?
+    @Published var sleepDeprivation: Bool?
+    @Published var irregularSchedule: Bool?
+    @Published var sleepDayFactorsResponse: SleepDayFactorsResponse?
+    @Published var noiseLevel: Int?
+    @Published var lightLevel: Int?
+    @Published var temperatureLevel: Int?
+
+    @Published var stressLevel: Int?
+    @Published var stressLevelNotSure: Bool = false
+    @Published var screenUseLevel: Int?
+    @Published var screenUseLevelNotSure: Bool = false
+    @Published var screenUseTiming: PreSleepTiming?
+    @Published var physicalActivityLevel: Int?
+    @Published var physicalActivityLevelNotSure: Bool = false
+    @Published var physicalActivityTiming: PreSleepTiming?
+    @Published var caffeineAmountLevel: Int?
+    @Published var caffeineAmountNotSure: Bool = false
+    @Published var caffeineTiming: PreSleepTiming?
+    @Published var caffeineNotSure: Bool = false
+    @Published var alcoholAmountLevel: Int?
+    @Published var alcoholAmountNotSure: Bool = false
+    @Published var alcoholTiming: PreSleepTiming?
+    @Published var alcoholNotSure: Bool = false
+    @Published var foodAmountLevel: Int?
+    @Published var foodAmountNotSure: Bool = false
+    @Published var foodTiming: PreSleepTiming?
+    @Published var foodNotSure: Bool = false
+
+    @Published var acuteStressEvent: Bool?
+    @Published var illnessOrFever: Bool?
+    @Published var travel: Bool?
+    @Published var previousDayFactorsResponse: PreviousDayFactorsResponse?
+
+    @Published var sleepOutcome: PostEpisodeSleepOutcome?
+    @Published var lingeringAnxiety: Int?
+    @Published var lingeringAnxietyNotSure: Bool = false
+    @Published var nextDayTiredness: Int?
+    @Published var nextDayTirednessNotSure: Bool = false
+
+    @Published var copingStrategies: Set<CopingStrategy> = []
+    @Published var copingHelpfulness: Helpfulness?
+
+    @Published var recognizedSleepParalysis: Bool?
+    @Published var supernaturalInterpretation: Bool?
+    @Published var fearedDying: Bool?
+    @Published var didNotKnowWhatItWas: Bool?
+    @Published var otherInterpretation: String = ""
+    @Published var interpretationNotSure: Bool = false
+
+    @Published var medicationOrSubstanceChange: Bool?
+    @Published var sensitiveChangeResponse: SensitiveChangeResponse?
+    @Published var sensitiveMedicationChange: Bool?
+    @Published var sensitiveSubstanceChange: Bool?
+    @Published var sensitivePrefersNotToSpecify: Bool?
+    @Published var sensitiveDescription: String = ""
 
     let nameCharacterLimit = 30
     let noteCharacterLimit = 500
+    let shortTextCharacterLimit = 120
+    let sensitiveTextCharacterLimit = 240
 
-    // MARK: - Computed Properties
+    private var originalDetails = RecordDetails()
+
     var currentLocale: Locale {
         switch LocalizationManager.currentLanguage {
         case .portuguese:
@@ -43,18 +113,14 @@ final class RecordDetailViewModel: ObservableObject {
         return !trimmed.isEmpty && trimmed.count <= nameCharacterLimit
     }
 
-    // MARK: - Lifecycle
     func bind(record: Record) {
         date = record.date
         name = RecordNameManager.generateRecordDisplayName(from: record) ?? record.name
-        note = record.note ?? ""
-        selectedExperiences = record.experiences ?? []
-        sleepStart = record.sleepStart ?? Date()
-        selectedParalysisDuration = ParalysisDuration(rawValue: record.paralysisDuration ?? ParalysisDuration.notSure.rawValue) ?? .notSure
-        routineMetrics = record.routineMetrics ?? RoutineMetrics()
-        sleepMetrics = record.sleepMetrics ?? SleepMetrics()
         trackDate = record.isAutoGeneratedName
-        updateVisibleSections(from: record)
+
+        originalDetails = record.details.pruned
+        bind(details: originalDetails)
+        updateVisibleSections(from: originalDetails)
     }
 
     func syncNameIfNeeded() {
@@ -63,73 +129,23 @@ final class RecordDetailViewModel: ObservableObject {
         }
     }
 
-    func updateVisibleSections(from record: Record) {
-        var sections = Set<RecordDetailSection>()
-        if record.sleepStart != nil {
-            sections.insert(.sleepStart)
-        }
-        if record.note != nil {
-            sections.insert(.note)
-        }
-        if let exps = record.experiences, !exps.isEmpty {
-            sections.insert(.experience)
-        }
-        if record.paralysisDuration != nil {
-            sections.insert(.paralysisDuration)
-        }
-        if record.routineMetrics != nil {
-            sections.insert(.routineMetrics)
-        }
-        if record.sleepMetrics != nil {
-            sections.insert(.sleepMetrics)
-        }
-        visibleSections = sections
-    }
-
-    // MARK: - Validation
-
     func isModified(for record: Record) -> Bool {
-        if date != record.date || name != record.name {
-            return true
-        }
-        if note != (record.note ?? "") {
-            return true
-        }
-        if selectedExperiences != (record.experiences ?? []) {
-            return true
-        }
-        if visibleSections.contains(.sleepStart) {
-            let originalSleep = record.sleepStart ?? sleepStart
-            if sleepStart != originalSleep {
-                return true
-            }
-        }
-        if visibleSections.contains(.paralysisDuration) {
-            if selectedParalysisDuration.rawValue != (record.paralysisDuration ?? ParalysisDuration.notSure.rawValue) {
-                return true
-            }
-        }
-        return false
+        date != record.date ||
+        name != record.name ||
+        trackDate != record.isAutoGeneratedName ||
+        currentDetails != originalDetails
     }
 
     func canSave(for record: Record) -> Bool {
         isModified(for: record) && isNameValid
     }
 
-    // MARK: - Actions
-
     func save(record: Record, context: ModelContext) {
         AppLog.info(.detail, "Saving record id: \(record.id)")
         record.date = date
         record.name = name
-        let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
-        record.note = trimmedNote.isEmpty ? nil : trimmedNote
-        record.experiences = selectedExperiences
-        record.sleepStart = visibleSections.contains(.sleepStart) ? sleepStart : nil
-        record.paralysisDuration = visibleSections.contains(.paralysisDuration) && selectedParalysisDuration != .notSure ? selectedParalysisDuration.rawValue : nil
-        record.routineMetrics = visibleSections.contains(.routineMetrics) ? routineMetrics : nil
-        record.sleepMetrics = visibleSections.contains(.sleepMetrics) ? sleepMetrics : nil
         record.isAutoGeneratedName = trackDate
+        record.updateDetails(currentDetails)
         try? context.save()
         AppLog.info(.detail, "Record id: \(record.id) saved")
     }
@@ -141,21 +157,638 @@ final class RecordDetailViewModel: ObservableObject {
         AppLog.info(.detail, "Record id: \(record.id) deleted")
     }
 
-    // MARK: - Helpers
-
     func getRecordName(for date: Date) -> String {
         RecordNameManager.generateRecordName(for: date)
     }
 
-    func hideSection(_ section: RecordDetailSection) {
-        visibleSections.remove(section)
+    func sections(in group: RecordDetailSectionGroup) -> [RecordDetailSection] {
+        RecordDetailSection.orderedCases.filter { $0.group == group }
+    }
+
+    func hasContent(in section: RecordDetailSection) -> Bool {
+        details(for: [section]).isEmpty == false
     }
 
     func toggleSection(_ section: RecordDetailSection) {
         if visibleSections.contains(section) {
             visibleSections.remove(section)
         } else {
+            prepareDefaultValue(for: section)
             visibleSections.insert(section)
         }
+    }
+
+    func setSection(_ section: RecordDetailSection, isPresent: Bool) {
+        if isPresent {
+            prepareDefaultValue(for: section)
+            visibleSections.insert(section)
+        } else {
+            clearValue(for: section)
+            visibleSections.remove(section)
+        }
+    }
+
+    func prepareResponseIfNeeded(in section: RecordDetailSection) {
+        prepareDefaultValue(for: section)
+    }
+
+    func clearResponse(in section: RecordDetailSection) {
+        switch section {
+        case .episodeMoment:
+            episodeMoment = nil
+        case .sleepPeriodAndDuration:
+            sleepStart = nil
+            wakeTime = nil
+            estimatedSleepDuration = nil
+        case .sleepStart:
+            sleepStart = nil
+        case .wakeTime:
+            wakeTime = nil
+        case .estimatedSleepDuration:
+            estimatedSleepDuration = nil
+        case .paralysisDuration:
+            selectedParalysisDuration = nil
+        case .bodyPosition:
+            bodyPosition = nil
+        case .fearDistress:
+            fearDistressLevel = nil
+            fearDistressNotSure = false
+        case .breathingImpact:
+            breathingImpact = nil
+        case .experiences:
+            selectedExperiences = []
+            experienceIntensities = [:]
+        case .sleepQuality:
+            sleepQuality = nil
+            sleepQualityNotSure = false
+        case .awakenings:
+            awakenings = nil
+        case .sleepDayFactors:
+            hadNap = nil
+            sleepDeprivation = nil
+            irregularSchedule = nil
+            sleepDayFactorsResponse = nil
+        case .hadNap:
+            hadNap = nil
+        case .sleepDeprivation:
+            sleepDeprivation = nil
+        case .irregularSchedule:
+            irregularSchedule = nil
+        case .sleepEnvironment:
+            noiseLevel = nil
+            lightLevel = nil
+            temperatureLevel = nil
+        case .noiseLevel:
+            noiseLevel = nil
+        case .lightLevel:
+            lightLevel = nil
+        case .temperatureLevel:
+            temperatureLevel = nil
+        case .stressLevel:
+            stressLevel = nil
+            stressLevelNotSure = false
+        case .preSleepActivities:
+            screenUseLevel = nil
+            screenUseLevelNotSure = false
+            screenUseTiming = nil
+            physicalActivityLevel = nil
+            physicalActivityLevelNotSure = false
+            physicalActivityTiming = nil
+        case .screenUse:
+            screenUseLevel = nil
+            screenUseLevelNotSure = false
+            screenUseTiming = nil
+        case .physicalActivity:
+            physicalActivityLevel = nil
+            physicalActivityLevelNotSure = false
+            physicalActivityTiming = nil
+        case .preSleepFoodAndDrinks:
+            caffeineAmountLevel = nil
+            caffeineAmountNotSure = false
+            caffeineTiming = nil
+            caffeineNotSure = false
+            alcoholAmountLevel = nil
+            alcoholAmountNotSure = false
+            alcoholTiming = nil
+            alcoholNotSure = false
+            foodAmountLevel = nil
+            foodAmountNotSure = false
+            foodTiming = nil
+            foodNotSure = false
+        case .caffeineConsumption:
+            caffeineAmountLevel = nil
+            caffeineAmountNotSure = false
+            caffeineTiming = nil
+            caffeineNotSure = false
+        case .alcoholConsumption:
+            alcoholAmountLevel = nil
+            alcoholAmountNotSure = false
+            alcoholTiming = nil
+            alcoholNotSure = false
+        case .foodConsumption:
+            foodAmountLevel = nil
+            foodAmountNotSure = false
+            foodTiming = nil
+            foodNotSure = false
+        case .previousDayFactors:
+            acuteStressEvent = nil
+            illnessOrFever = nil
+            travel = nil
+            previousDayFactorsResponse = nil
+        case .acuteStressEvent:
+            acuteStressEvent = nil
+        case .illnessOrFever:
+            illnessOrFever = nil
+        case .travel:
+            travel = nil
+        case .postEpisodeSleep:
+            sleepOutcome = nil
+        case .postEpisodeEffects:
+            lingeringAnxiety = nil
+            lingeringAnxietyNotSure = false
+            nextDayTiredness = nil
+            nextDayTirednessNotSure = false
+        case .sleepOutcome:
+            sleepOutcome = nil
+        case .lingeringAnxiety:
+            lingeringAnxiety = nil
+            lingeringAnxietyNotSure = false
+        case .nextDayTiredness:
+            nextDayTiredness = nil
+            nextDayTirednessNotSure = false
+        case .coping:
+            copingStrategies = []
+            copingHelpfulness = nil
+        case .interpretationSummary:
+            recognizedSleepParalysis = nil
+            supernaturalInterpretation = nil
+            fearedDying = nil
+            didNotKnowWhatItWas = nil
+            otherInterpretation = ""
+            interpretationNotSure = false
+        case .recognizedSleepParalysis:
+            recognizedSleepParalysis = nil
+        case .supernaturalInterpretation:
+            supernaturalInterpretation = nil
+        case .fearedDying:
+            fearedDying = nil
+        case .otherInterpretation:
+            otherInterpretation = ""
+        case .note:
+            noteText = ""
+        case .sensitiveContext:
+            medicationOrSubstanceChange = nil
+            sensitiveChangeResponse = nil
+            sensitiveMedicationChange = nil
+            sensitiveSubstanceChange = nil
+            sensitivePrefersNotToSpecify = nil
+            sensitiveDescription = ""
+        }
+    }
+
+    func pruneExperienceIntensities() {
+        experienceIntensities = experienceIntensities.filter { selectedExperiences.contains($0.key) }
+    }
+
+    func toggleCopingStrategy(_ strategy: CopingStrategy) {
+        if copingStrategies.contains(strategy) {
+            copingStrategies.remove(strategy)
+        } else {
+            copingStrategies.insert(strategy)
+        }
+    }
+
+    var currentDetails: RecordDetails {
+        details(for: visibleSections).pruned
+    }
+
+    private func prepareDefaultValue(for section: RecordDetailSection) {
+        switch section {
+        case .hadNap:
+            hadNap = true
+        case .sleepDeprivation:
+            sleepDeprivation = true
+        case .irregularSchedule:
+            irregularSchedule = true
+        case .acuteStressEvent:
+            acuteStressEvent = true
+        case .illnessOrFever:
+            illnessOrFever = true
+        case .travel:
+            travel = true
+        case .recognizedSleepParalysis:
+            recognizedSleepParalysis = true
+        case .supernaturalInterpretation:
+            supernaturalInterpretation = true
+        case .fearedDying:
+            fearedDying = true
+        default:
+            break
+        }
+    }
+
+    private func clearValue(for section: RecordDetailSection) {
+        switch section {
+        case .hadNap:
+            hadNap = nil
+        case .sleepDeprivation:
+            sleepDeprivation = nil
+        case .irregularSchedule:
+            irregularSchedule = nil
+        case .previousDayFactors:
+            acuteStressEvent = nil
+            illnessOrFever = nil
+            travel = nil
+            previousDayFactorsResponse = nil
+        case .acuteStressEvent:
+            acuteStressEvent = nil
+        case .illnessOrFever:
+            illnessOrFever = nil
+        case .travel:
+            travel = nil
+        case .postEpisodeSleep:
+            sleepOutcome = nil
+        case .postEpisodeEffects:
+            lingeringAnxiety = nil
+            lingeringAnxietyNotSure = false
+            nextDayTiredness = nil
+            nextDayTirednessNotSure = false
+        case .interpretationSummary:
+            recognizedSleepParalysis = nil
+            supernaturalInterpretation = nil
+            fearedDying = nil
+            didNotKnowWhatItWas = nil
+            otherInterpretation = ""
+            interpretationNotSure = false
+        case .recognizedSleepParalysis:
+            recognizedSleepParalysis = nil
+        case .supernaturalInterpretation:
+            supernaturalInterpretation = nil
+        case .fearedDying:
+            fearedDying = nil
+        case .sensitiveContext:
+            medicationOrSubstanceChange = nil
+            sensitiveChangeResponse = nil
+            sensitiveMedicationChange = nil
+            sensitiveSubstanceChange = nil
+            sensitivePrefersNotToSpecify = nil
+        default:
+            break
+        }
+    }
+
+    private func bind(details: RecordDetails) {
+        noteText = details.note?.text ?? ""
+
+        episodeMoment = details.episode?.moment
+        selectedParalysisDuration = details.episode?.paralysisDuration
+        bodyPosition = details.episode?.bodyPosition
+        fearDistressLevel = details.episode?.fearDistressLevel
+        fearDistressNotSure = details.episode?.fearDistressNotSure == true
+        breathingImpact = details.episode?.breathingImpact
+
+        selectedExperiences = details.experiences?.selectedExperiences ?? []
+        experienceIntensities = (details.experiences?.intensityByExperience ?? []).reduce(into: [:]) { result, value in
+            result[value.experience] = value.intensity
+        }
+
+        sleepStart = details.sleepContext?.sleepStart
+        wakeTime = details.sleepContext?.wakeTime
+        estimatedSleepDuration = details.sleepContext?.estimatedSleepDuration
+        sleepQuality = details.sleepContext?.sleepQuality
+        sleepQualityNotSure = details.sleepContext?.sleepQualityNotSure == true
+        awakenings = details.sleepContext?.awakenings
+        hadNap = details.sleepContext?.hadNap == true ? true : nil
+        sleepDeprivation = details.sleepContext?.sleepDeprivation == true ? true : nil
+        irregularSchedule = details.sleepContext?.irregularSchedule == true ? true : nil
+        sleepDayFactorsResponse = details.sleepContext?.dayFactorsResponse
+        noiseLevel = details.sleepContext?.environment?.noiseLevel
+        lightLevel = details.sleepContext?.environment?.lightLevel
+        temperatureLevel = details.sleepContext?.environment?.temperatureLevel
+
+        stressLevel = details.preSleepContext?.stressLevel
+        stressLevelNotSure = details.preSleepContext?.stressLevelNotSure == true
+        screenUseLevel = details.preSleepContext?.screenUse?.level
+        screenUseLevelNotSure = details.preSleepContext?.screenUse?.levelNotSure == true
+        screenUseTiming = details.preSleepContext?.screenUse?.timingBeforeSleep
+        physicalActivityLevel = details.preSleepContext?.physicalActivity?.level
+        physicalActivityLevelNotSure = details.preSleepContext?.physicalActivity?.levelNotSure == true
+        physicalActivityTiming = details.preSleepContext?.physicalActivity?.timingBeforeSleep
+        caffeineAmountLevel = details.preSleepContext?.consumption?.caffeine?.amountLevel
+        caffeineAmountNotSure = details.preSleepContext?.consumption?.caffeine?.amountNotSure == true
+        caffeineTiming = details.preSleepContext?.consumption?.caffeine?.timingBeforeSleep
+        caffeineNotSure = details.preSleepContext?.consumption?.caffeine?.notSure == true
+        alcoholAmountLevel = details.preSleepContext?.consumption?.alcohol?.amountLevel
+        alcoholAmountNotSure = details.preSleepContext?.consumption?.alcohol?.amountNotSure == true
+        alcoholTiming = details.preSleepContext?.consumption?.alcohol?.timingBeforeSleep
+        alcoholNotSure = details.preSleepContext?.consumption?.alcohol?.notSure == true
+        foodAmountLevel = details.preSleepContext?.consumption?.food?.amountLevel
+        foodAmountNotSure = details.preSleepContext?.consumption?.food?.amountNotSure == true
+        foodTiming = details.preSleepContext?.consumption?.food?.timingBeforeSleep
+        foodNotSure = details.preSleepContext?.consumption?.food?.notSure == true
+
+        acuteStressEvent = details.previousDayContext?.acuteStressEvent == true ? true : nil
+        illnessOrFever = details.previousDayContext?.illnessOrFever == true ? true : nil
+        travel = details.previousDayContext?.travel == true ? true : nil
+        previousDayFactorsResponse = details.previousDayContext?.factorsResponse
+
+        sleepOutcome = details.postEpisodeImpact?.sleepOutcome
+        lingeringAnxiety = details.postEpisodeImpact?.lingeringAnxiety
+        lingeringAnxietyNotSure = details.postEpisodeImpact?.lingeringAnxietyNotSure == true
+        nextDayTiredness = details.postEpisodeImpact?.nextDayTiredness
+        nextDayTirednessNotSure = details.postEpisodeImpact?.nextDayTirednessNotSure == true
+
+        copingStrategies = Set(details.coping?.strategiesUsed ?? [])
+        copingHelpfulness = details.coping?.helpfulness
+
+        recognizedSleepParalysis = details.interpretation?.recognizedSleepParalysis == true ? true : nil
+        supernaturalInterpretation = details.interpretation?.supernaturalInterpretation == true ? true : nil
+        fearedDying = details.interpretation?.fearedDying == true ? true : nil
+        didNotKnowWhatItWas = details.interpretation?.didNotKnowWhatItWas == true ? true : nil
+        otherInterpretation = details.interpretation?.otherInterpretation ?? ""
+        interpretationNotSure = details.interpretation?.notSure == true
+
+        medicationOrSubstanceChange = details.sensitiveContext?.medicationOrSubstanceChange == true ? true : nil
+        sensitiveChangeResponse = details.sensitiveContext?.changeResponse
+            ?? (details.sensitiveContext?.medicationOrSubstanceChange == true ||
+                details.sensitiveContext?.medicationChange == true ||
+                details.sensitiveContext?.substanceChange == true ||
+                details.sensitiveContext?.prefersNotToSpecifyChangeType == true ||
+                details.sensitiveContext?.description?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false ? .yes : nil)
+        sensitiveMedicationChange = details.sensitiveContext?.medicationChange == true ? true : nil
+        sensitiveSubstanceChange = details.sensitiveContext?.substanceChange == true ? true : nil
+        sensitivePrefersNotToSpecify = details.sensitiveContext?.prefersNotToSpecifyChangeType == true ? true : nil
+        sensitiveDescription = details.sensitiveContext?.description ?? ""
+    }
+
+    private func updateVisibleSections(from details: RecordDetails) {
+        var sections = Set<RecordDetailSection>()
+
+        if details.note != nil { sections.insert(.note) }
+        if details.episode?.moment != nil { sections.insert(.episodeMoment) }
+        if details.episode?.paralysisDuration != nil { sections.insert(.paralysisDuration) }
+        if details.episode?.bodyPosition != nil { sections.insert(.bodyPosition) }
+        if details.episode?.fearDistressLevel != nil || details.episode?.fearDistressNotSure == true { sections.insert(.fearDistress) }
+        if details.episode?.breathingImpact != nil { sections.insert(.breathingImpact) }
+        if details.experiences != nil { sections.insert(.experiences) }
+        if details.sleepContext?.sleepStart != nil ||
+            details.sleepContext?.wakeTime != nil ||
+            details.sleepContext?.estimatedSleepDuration != nil {
+            sections.insert(.sleepPeriodAndDuration)
+        }
+        if details.sleepContext?.sleepQuality != nil ||
+            details.sleepContext?.sleepQualityNotSure == true {
+            sections.insert(.sleepQuality)
+        }
+        if details.sleepContext?.awakenings != nil { sections.insert(.awakenings) }
+        if details.sleepContext?.hadNap == true ||
+            details.sleepContext?.sleepDeprivation == true ||
+            details.sleepContext?.irregularSchedule == true ||
+            details.sleepContext?.dayFactorsResponse != nil {
+            sections.insert(.sleepDayFactors)
+        }
+        if details.sleepContext?.environment?.noiseLevel != nil ||
+            details.sleepContext?.environment?.lightLevel != nil ||
+            details.sleepContext?.environment?.temperatureLevel != nil {
+            sections.insert(.sleepEnvironment)
+        }
+        if details.preSleepContext?.stressLevel != nil ||
+            details.preSleepContext?.stressLevelNotSure == true {
+            sections.insert(.stressLevel)
+        }
+        if details.preSleepContext?.screenUse != nil ||
+            details.preSleepContext?.physicalActivity != nil {
+            sections.insert(.preSleepActivities)
+        }
+        if details.preSleepContext?.consumption?.caffeine != nil ||
+            details.preSleepContext?.consumption?.alcohol != nil ||
+            details.preSleepContext?.consumption?.food != nil {
+            sections.insert(.preSleepFoodAndDrinks)
+        }
+        if details.previousDayContext?.acuteStressEvent == true ||
+            details.previousDayContext?.illnessOrFever == true ||
+            details.previousDayContext?.travel == true ||
+            details.previousDayContext?.factorsResponse != nil {
+            sections.insert(.previousDayFactors)
+        }
+        if details.postEpisodeImpact?.sleepOutcome != nil { sections.insert(.postEpisodeSleep) }
+        if details.postEpisodeImpact?.lingeringAnxiety != nil ||
+            details.postEpisodeImpact?.lingeringAnxietyNotSure == true ||
+            details.postEpisodeImpact?.nextDayTiredness != nil ||
+            details.postEpisodeImpact?.nextDayTirednessNotSure == true {
+            sections.insert(.postEpisodeEffects)
+        }
+        if details.coping != nil { sections.insert(.coping) }
+        if details.interpretation?.recognizedSleepParalysis == true ||
+            details.interpretation?.supernaturalInterpretation == true ||
+            details.interpretation?.fearedDying == true ||
+            details.interpretation?.didNotKnowWhatItWas == true ||
+            details.interpretation?.notSure == true ||
+            details.interpretation?.otherInterpretation?.isEmpty == false {
+            sections.insert(.interpretationSummary)
+        }
+        if details.sensitiveContext?.medicationOrSubstanceChange == true ||
+            details.sensitiveContext?.changeResponse != nil ||
+            details.sensitiveContext?.medicationChange == true ||
+            details.sensitiveContext?.substanceChange == true ||
+            details.sensitiveContext?.prefersNotToSpecifyChangeType == true ||
+            details.sensitiveContext?.description?.isEmpty == false {
+            sections.insert(.sensitiveContext)
+        }
+
+        visibleSections = sections
+    }
+
+    private func details(for sections: Set<RecordDetailSection>) -> RecordDetails {
+        var details = RecordDetails()
+
+        if sections.contains(.note) {
+            details.note = NoteDetails(text: noteText)
+        }
+
+        details.episode = episodeDetails(for: sections)
+        details.experiences = experienceDetails(for: sections)
+        details.sleepContext = sleepContext(for: sections)
+        details.preSleepContext = preSleepContext(for: sections)
+        details.previousDayContext = previousDayContext(for: sections)
+        details.postEpisodeImpact = postEpisodeImpact(for: sections)
+        details.coping = copingDetails(for: sections)
+        details.interpretation = interpretationDetails(for: sections)
+        details.sensitiveContext = sensitiveContext(for: sections)
+
+        return details.pruned
+    }
+
+    private func episodeDetails(for sections: Set<RecordDetailSection>) -> EpisodeDetails? {
+        EpisodeDetails(
+            moment: sections.contains(.episodeMoment) ? episodeMoment : nil,
+            paralysisDuration: sections.contains(.paralysisDuration) ? selectedParalysisDuration : nil,
+            bodyPosition: sections.contains(.bodyPosition) ? bodyPosition : nil,
+            fearDistressLevel: sections.contains(.fearDistress) && !fearDistressNotSure ? fearDistressLevel : nil,
+            fearDistressNotSure: sections.contains(.fearDistress) && fearDistressNotSure ? true : nil,
+            breathingImpact: sections.contains(.breathingImpact) ? breathingImpact : nil
+        ).pruned
+    }
+
+    private func experienceDetails(for sections: Set<RecordDetailSection>) -> ExperienceDetails? {
+        guard sections.contains(.experiences) else { return nil }
+        let intensities = selectedExperiences.compactMap { experience -> ExperienceIntensity? in
+            guard let intensity = experienceIntensities[experience] else {
+                return nil
+            }
+            return ExperienceIntensity(experience: experience, intensity: intensity)
+        }
+        return ExperienceDetails(selectedExperiences: selectedExperiences, intensityByExperience: intensities).pruned
+    }
+
+    private func sleepContext(for sections: Set<RecordDetailSection>) -> SleepContext? {
+        let includesPeriod = sections.contains(.sleepPeriodAndDuration) ||
+            sections.contains(.sleepStart) ||
+            sections.contains(.wakeTime) ||
+            sections.contains(.estimatedSleepDuration)
+        let includesDayFactors = sections.contains(.sleepDayFactors) ||
+            sections.contains(.hadNap) ||
+            sections.contains(.sleepDeprivation) ||
+            sections.contains(.irregularSchedule)
+
+        return SleepContext(
+            sleepStart: includesPeriod ? sleepStart : nil,
+            wakeTime: includesPeriod ? wakeTime : nil,
+            estimatedSleepDuration: includesPeriod ? estimatedSleepDuration : nil,
+            sleepQuality: sections.contains(.sleepQuality) && !sleepQualityNotSure ? sleepQuality : nil,
+            sleepQualityNotSure: sections.contains(.sleepQuality) && sleepQualityNotSure ? true : nil,
+            awakenings: sections.contains(.awakenings) ? awakenings : nil,
+            hadNap: includesDayFactors && sleepDayFactorsResponse == nil && hadNap == true ? true : nil,
+            sleepDeprivation: includesDayFactors && sleepDayFactorsResponse == nil && sleepDeprivation == true ? true : nil,
+            irregularSchedule: includesDayFactors && sleepDayFactorsResponse == nil && irregularSchedule == true ? true : nil,
+            dayFactorsResponse: includesDayFactors ? sleepDayFactorsResponse : nil,
+            environment: sleepEnvironment(for: sections)
+        ).pruned
+    }
+
+    private func sleepEnvironment(for sections: Set<RecordDetailSection>) -> SleepEnvironment? {
+        let includesEnvironment = sections.contains(.sleepEnvironment) ||
+            sections.contains(.noiseLevel) ||
+            sections.contains(.lightLevel) ||
+            sections.contains(.temperatureLevel)
+
+        return SleepEnvironment(
+            noiseLevel: includesEnvironment ? noiseLevel : nil,
+            lightLevel: includesEnvironment ? lightLevel : nil,
+            temperatureLevel: includesEnvironment ? temperatureLevel : nil
+        ).pruned
+    }
+
+    private func preSleepContext(for sections: Set<RecordDetailSection>) -> PreSleepContext? {
+        let includesActivities = sections.contains(.preSleepActivities) ||
+            sections.contains(.screenUse) ||
+            sections.contains(.physicalActivity)
+
+        return PreSleepContext(
+            stressLevel: sections.contains(.stressLevel) && !stressLevelNotSure ? stressLevel : nil,
+            stressLevelNotSure: sections.contains(.stressLevel) && stressLevelNotSure ? true : nil,
+            screenUse: includesActivities
+                ? TimedLevel(level: screenUseLevel, levelNotSure: screenUseLevelNotSure, timingBeforeSleep: screenUseTiming)
+                : nil,
+            physicalActivity: includesActivities
+                ? TimedLevel(level: physicalActivityLevel, levelNotSure: physicalActivityLevelNotSure, timingBeforeSleep: physicalActivityTiming)
+                : nil,
+            consumption: preSleepConsumption(for: sections)
+        ).pruned
+    }
+
+    private func preSleepConsumption(for sections: Set<RecordDetailSection>) -> PreSleepConsumption? {
+        let includesConsumption = sections.contains(.preSleepFoodAndDrinks) ||
+            sections.contains(.caffeineConsumption) ||
+            sections.contains(.alcoholConsumption) ||
+            sections.contains(.foodConsumption)
+
+        return PreSleepConsumption(
+            caffeine: includesConsumption
+                ? TimedAmount(amountLevel: caffeineAmountLevel, timingBeforeSleep: caffeineTiming, notSure: caffeineNotSure, amountNotSure: caffeineAmountNotSure)
+                : nil,
+            alcohol: includesConsumption
+                ? TimedAmount(amountLevel: alcoholAmountLevel, timingBeforeSleep: alcoholTiming, notSure: alcoholNotSure, amountNotSure: alcoholAmountNotSure)
+                : nil,
+            food: includesConsumption
+                ? TimedAmount(amountLevel: foodAmountLevel, timingBeforeSleep: foodTiming, notSure: foodNotSure, amountNotSure: foodAmountNotSure)
+                : nil
+        ).pruned
+    }
+
+    private func previousDayContext(for sections: Set<RecordDetailSection>) -> PreviousDayContext? {
+        let includesPreviousDayFactors = sections.contains(.previousDayFactors) ||
+            sections.contains(.acuteStressEvent) ||
+            sections.contains(.illnessOrFever) ||
+            sections.contains(.travel)
+
+        return PreviousDayContext(
+            acuteStressEvent: includesPreviousDayFactors && previousDayFactorsResponse == nil && acuteStressEvent == true ? true : nil,
+            illnessOrFever: includesPreviousDayFactors && previousDayFactorsResponse == nil && illnessOrFever == true ? true : nil,
+            travel: includesPreviousDayFactors && previousDayFactorsResponse == nil && travel == true ? true : nil,
+            factorsResponse: includesPreviousDayFactors ? previousDayFactorsResponse : nil
+        ).pruned
+    }
+
+    private func postEpisodeImpact(for sections: Set<RecordDetailSection>) -> PostEpisodeImpact? {
+        let includesSleep = sections.contains(.postEpisodeSleep) ||
+            sections.contains(.sleepOutcome)
+        let includesEffects = sections.contains(.postEpisodeEffects) ||
+            sections.contains(.lingeringAnxiety) ||
+            sections.contains(.nextDayTiredness)
+
+        return PostEpisodeImpact(
+            sleepOutcome: includesSleep ? sleepOutcome : nil,
+            lingeringAnxiety: includesEffects && !lingeringAnxietyNotSure ? lingeringAnxiety : nil,
+            lingeringAnxietyNotSure: includesEffects && lingeringAnxietyNotSure ? true : nil,
+            nextDayTiredness: includesEffects && !nextDayTirednessNotSure ? nextDayTiredness : nil,
+            nextDayTirednessNotSure: includesEffects && nextDayTirednessNotSure ? true : nil
+        ).pruned
+    }
+
+    private func copingDetails(for sections: Set<RecordDetailSection>) -> CopingDetails? {
+        guard sections.contains(.coping) else { return nil }
+        return CopingDetails(
+            strategiesUsed: CopingStrategy.allCases.filter { copingStrategies.contains($0) },
+            helpfulness: copingHelpfulness
+        ).pruned
+    }
+
+    private func interpretationDetails(for sections: Set<RecordDetailSection>) -> InterpretationDetails? {
+        let includesInterpretation = sections.contains(.interpretationSummary) ||
+            sections.contains(.recognizedSleepParalysis) ||
+            sections.contains(.supernaturalInterpretation) ||
+            sections.contains(.fearedDying) ||
+            sections.contains(.otherInterpretation)
+
+        return InterpretationDetails(
+            recognizedSleepParalysis: includesInterpretation && !interpretationNotSure && recognizedSleepParalysis == true ? true : nil,
+            supernaturalInterpretation: includesInterpretation && !interpretationNotSure && supernaturalInterpretation == true ? true : nil,
+            fearedDying: includesInterpretation && !interpretationNotSure && fearedDying == true ? true : nil,
+            didNotKnowWhatItWas: includesInterpretation && !interpretationNotSure && didNotKnowWhatItWas == true ? true : nil,
+            otherInterpretation: includesInterpretation && !interpretationNotSure ? otherInterpretation : nil,
+            notSure: includesInterpretation && interpretationNotSure ? true : nil
+        ).pruned
+    }
+
+    private func sensitiveContext(for sections: Set<RecordDetailSection>) -> SensitiveContext? {
+        guard sections.contains(.sensitiveContext) else { return nil }
+
+        let hasLegacySensitiveContent = medicationOrSubstanceChange == true ||
+            sensitiveMedicationChange == true ||
+            sensitiveSubstanceChange == true ||
+            sensitivePrefersNotToSpecify == true ||
+            sensitiveDescription.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false
+        let response = sensitiveChangeResponse ?? (hasLegacySensitiveContent ? .yes : nil)
+        let description = response == .no ? "" : sensitiveDescription
+
+        return SensitiveContext(
+            medicationOrSubstanceChange: response == .yes ? true : nil,
+            changeResponse: response,
+            medicationChange: response == .yes && sensitivePrefersNotToSpecify != true && sensitiveMedicationChange == true ? true : nil,
+            substanceChange: response == .yes && sensitivePrefersNotToSpecify != true && sensitiveSubstanceChange == true ? true : nil,
+            prefersNotToSpecifyChangeType: response == .yes && sensitivePrefersNotToSpecify == true ? true : nil,
+            description: description
+        ).pruned
     }
 }

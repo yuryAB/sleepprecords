@@ -7,9 +7,10 @@ Sleep Records currently treats user data as local, private, and device-owned. An
 - The app persists data locally with SwiftData.
 - There is no account system, network service layer, CloudKit sync, iCloud entitlement, export flow, or remote backup behavior in the current app.
 - `Record` is the primary persisted model and represents a sleep paralysis episode.
-- `SleepMetrics` and `RoutineMetrics` are optional related SwiftData models.
+- `Record` keeps only stable episode identity and UX fields directly in SwiftData.
+- Optional episode details are stored as a versioned `RecordDetails` JSON payload in `Record.detailsData`.
 - `@AppStorage("hasSeenCreatorNote")` stores only the local onboarding state.
-- Episode fields beyond the record date and time are optional by product design.
+- Episode fields beyond record identity, date/time, and name are optional by product design.
 
 ## Required Impact Review
 
@@ -33,6 +34,7 @@ Preserve existing local records by default. If a change can cause data loss, dup
 - Do not add notes, experiences, metrics, record names, or other sensitive user content to public logs.
 - Do not delete old fields only because the current UI no longer uses them. Deprecate, migrate, and validate first.
 - Do not replace `nil` optional values with artificial defaults unless the product meaning is explicitly approved.
+- Do not create new `@Model` relationships just to group episode detail fields. Use versioned `Codable` structs in `RecordDetails` unless the data has its own identity or lifecycle.
 
 ## Schema Change Guidelines
 
@@ -44,6 +46,9 @@ Prefer additive, backward-compatible schema changes:
 - Plan `VersionedSchema` and `SchemaMigrationPlan` for nontrivial SwiftData changes.
 - Keep relationships optional unless there is a clear product reason to require them.
 - Review `@Relationship(deleteRule: .cascade)` before changing deletion behavior or related models.
+- Treat `@Model` as an entity boundary, not as a general grouping tool for fields.
+- For attributes or grouped details that only exist inside an episode, prefer versioned `Codable` structs inside `RecordDetails`.
+- Include a payload version when the meaning or structure of details may change over time.
 
 When adding a new model, confirm that the `ModelContainer` schema includes everything needed for the app to read and write that model safely. When changing a relationship, validate both records that already have related data and records that do not.
 
@@ -51,12 +56,9 @@ When adding a new model, confirm that the `ModelContainer` schema includes every
 
 For episode detail fields, `nil` means the user did not provide that information or disabled that section. This matters for both UX and future data analysis.
 
-- `note == nil` means no note is stored.
-- `experiences == nil` or an empty list means no experiences are stored.
-- `sleepStart == nil` means sleep start time was not recorded.
-- `paralysisDuration == nil` means duration was not recorded.
-- `routineMetrics == nil` means routine metrics were not recorded.
-- `sleepMetrics == nil` means sleep metrics were not recorded.
+- `detailsData == nil` means no optional episode details are stored.
+- A missing nested `RecordDetails` field means that specific detail was not recorded.
+- Empty `RecordDetails` groups should be pruned instead of persisted as empty containers.
 
 Do not silently convert "not recorded" into "zero", "not sure", or another meaningful value unless the user explicitly chose that value or a migration plan defines the change.
 
