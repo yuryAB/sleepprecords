@@ -39,7 +39,7 @@ O app funciona inteiramente offline, sem necessidade de conta ou conexão com a 
 | Idiomas | Português (BR) e Inglês, detectados automaticamente pelo idioma do dispositivo |
 | Tela de boas-vindas | Apresentação do app na primeira abertura |
 
-Existem também funcionalidades planejadas para versões futuras, como métricas de qualidade do sono (nível de ruído, luminosidade, temperatura do ambiente) e métricas de rotina pré-sono (nível de estresse, consumo de cafeína, atividade física, uso de tela). Essas estruturas já existem internamente, mas ainda não estão visíveis para o usuário.
+Os detalhes opcionais do episódio são adicionados individualmente, para que o usuário registre apenas o que fizer sentido naquele caso. Isso inclui contexto do sono, experiências percebidas, rotina antes de dormir, consumos, impacto depois do episódio, estratégias usadas, interpretação pessoal e notas.
 
 ---
 

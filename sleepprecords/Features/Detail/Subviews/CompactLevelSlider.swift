@@ -11,9 +11,11 @@ struct CompactLevelSlider: View {
     let label: LocalizedStringKey
     @Binding var value: Int?
     var range: ClosedRange<Int> = 0...5
+    var minimumLabel: LocalizedStringKey = "level.anchor.low"
+    var maximumLabel: LocalizedStringKey = "level.anchor.high"
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(label)
                     .font(.subheadline)
@@ -30,6 +32,14 @@ struct CompactLevelSlider: View {
                     levelDot(level)
                 }
             }
+
+            HStack {
+                Text(minimumLabel)
+                Spacer()
+                Text(maximumLabel)
+            }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
         }
         .padding(.vertical, 4)
     }
@@ -41,14 +51,6 @@ struct CompactLevelSlider: View {
             .fill(isSelected ? Color.awake : Color.secondary.opacity(0.25))
             .frame(height: 10)
             .frame(maxWidth: .infinity)
-            .overlay(alignment: .bottom) {
-                if level == range.lowerBound || level == range.upperBound {
-                    Text("\(level)")
-                        .font(.system(size: 9))
-                        .foregroundStyle(.secondary)
-                        .offset(y: 14)
-                }
-            }
             .contentShape(Rectangle())
             .onTapGesture {
                 withAnimation(.easeInOut(duration: 0.15)) {

@@ -20,8 +20,7 @@ The purpose of Sleep Records is to encourage adoption among people who experienc
 - Select from a catalog of sleep paralysis experiences, including visual, auditory, bodily, emotional, and sensory experiences.
 - Record estimated paralysis duration.
 - Add free-form notes with a character limit.
-- Track optional routine metrics, such as stress, caffeine, alcohol, physical activity, and screen use.
-- Track optional sleep metrics, such as sleep quality, noise level, light level, and temperature.
+- Add optional episode details individually, including experiences, sleep context, pre-sleep context, post-episode impact, coping, interpretation, and notes.
 - Use English or Brazilian Portuguese localization based on device settings.
 - Store records locally on the device with SwiftData.
 
@@ -74,7 +73,7 @@ The app is organized by feature and follows an MVVM-style structure:
 - Views define the SwiftUI screens and reusable UI sections.
 - View models coordinate state, validation, persistence actions, and display formatting.
 
-SwiftData is used for local persistence. The primary persisted model is `Record`, with optional related models for sleep metrics and routine metrics.
+SwiftData is used for local persistence. The primary persisted model is `Record`; optional episode details are stored as a versioned `RecordDetails` payload.
 
 ## Localization
 

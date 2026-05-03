@@ -10,12 +10,19 @@ import os
 
 struct ExperiencePickerView: View {
     @Binding var selectedExperiences: [Experience]
+    @Binding var experienceIntensities: [Experience: Int]
     @State private var tempSelectedExperiences: [Experience]
+    @State private var tempExperienceIntensities: [Experience: Int]
     @Environment(\.dismiss) private var dismiss
 
-    init(selectedExperiences: Binding<[Experience]>) {
+    init(
+        selectedExperiences: Binding<[Experience]>,
+        experienceIntensities: Binding<[Experience: Int]>
+    ) {
         self._selectedExperiences = selectedExperiences
+        self._experienceIntensities = experienceIntensities
         self._tempSelectedExperiences = State(initialValue: selectedExperiences.wrappedValue)
+        self._tempExperienceIntensities = State(initialValue: experienceIntensities.wrappedValue)
     }
 
     var body: some View {
@@ -36,11 +43,15 @@ struct ExperiencePickerView: View {
                 Spacer()
 
                 Button("common.select") {
-                    AppLog.info(.experience, "Select button tapped with selectedExperiences: \(tempSelectedExperiences)")
+                    AppLog.info(.experience, "Select button tapped with \(tempSelectedExperiences.count) selected experiences")
                     selectedExperiences = tempSelectedExperiences
+                    experienceIntensities = tempExperienceIntensities.filter { tempSelectedExperiences.contains($0.key) }
                     dismiss()
                 }
-                .disabled(tempSelectedExperiences.isEmpty)
+                .disabled(
+                    tempSelectedExperiences == selectedExperiences &&
+                    tempExperienceIntensities == experienceIntensities
+                )
                 .fontWeight(.bold)
                 .textCase(nil)
             }
@@ -56,8 +67,12 @@ struct ExperiencePickerView: View {
                         .foregroundColor(.secondary)
                         .padding()
                     
-                    ForEach(Experience.allCases) { feeling in
-                        ExperienceRowView(Experience: feeling, selectedExperiences: $tempSelectedExperiences)
+                    ForEach(pickerExperiences) { feeling in
+                        ExperienceRowView(
+                            Experience: feeling,
+                            selectedExperiences: $tempSelectedExperiences,
+                            experienceIntensities: $tempExperienceIntensities
+                        )
                     }
                 }
                 .listStyle(.plain)
@@ -66,5 +81,10 @@ struct ExperiencePickerView: View {
         .onAppear {
             AppLog.info(.experience, "ExperiencePickerView appeared")
         }
+    }
+
+    private var pickerExperiences: [Experience] {
+        let legacySelected = tempSelectedExperiences.filter { !Experience.selectableCases.contains($0) }
+        return Experience.selectableCases + legacySelected
     }
 }

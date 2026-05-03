@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ExperienceSetterView: View {
     @Binding var selectedExperiences: [Experience]
+    @Binding var experienceIntensities: [Experience: Int]
     @Binding var showingPicker: Bool
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 16) {
             if selectedExperiences.isEmpty {
                 Text("detail.experienceeSectionSetter.title")
                     .font(.subheadline)
@@ -20,26 +21,45 @@ struct ExperienceSetterView: View {
             }
 
             if !selectedExperiences.isEmpty {
-                let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 5)
-
-                LazyVGrid(columns: columns, spacing: 12) {
-                    ForEach(selectedExperiences, id: \.self) { feeling in
-                        VStack(spacing: 4) {
-                            Text(feeling.emoji)
-                                .font(.largeTitle)
-                            Text(feeling.label)
-                                .font(.caption)
+                ForEach(selectedExperiences, id: \.self) { experience in
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack(spacing: 10) {
+                            Text(experience.emoji)
+                                .font(.title2)
+                            Text(experience.label)
+                                .font(.subheadline.weight(.semibold))
                                 .foregroundColor(.primary)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(2)
                         }
-                        .frame(maxWidth: .infinity, minHeight: 60)
+
+                        CompactLevelSlider(
+                            label: "detail.experienceIntensity.caption",
+                            value: intensityBinding(for: experience),
+                            range: 1...5,
+                            minimumLabel: "level.anchor.low",
+                            maximumLabel: "level.anchor.high"
+                        )
+                    }
+
+                    if experience != selectedExperiences.last {
+                        Divider()
                     }
                 }
             }
         }
         .sheet(isPresented: $showingPicker) {
-            ExperiencePickerView(selectedExperiences: $selectedExperiences)
+            ExperiencePickerView(
+                selectedExperiences: $selectedExperiences,
+                experienceIntensities: $experienceIntensities
+            )
         }
+    }
+
+    private func intensityBinding(for experience: Experience) -> Binding<Int?> {
+        Binding(
+            get: { experienceIntensities[experience] },
+            set: { newValue in
+                experienceIntensities[experience] = newValue
+            }
+        )
     }
 }

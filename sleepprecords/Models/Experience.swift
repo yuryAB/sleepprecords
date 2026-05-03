@@ -37,6 +37,12 @@ enum Experience: String, Codable, CaseIterable, Identifiable {
     case visualHallucination
  
     var id: String { self.rawValue }
+
+    static let emotionalCases: Set<Experience> = [.panic, .helplessness, .calm]
+
+    static var selectableCases: [Experience] {
+        allCases.filter { !emotionalCases.contains($0) }
+    }
     
     var label: String {
         let key = "experience.label.\(rawValue)"
