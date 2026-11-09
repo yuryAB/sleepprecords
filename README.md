@@ -108,4 +108,6 @@ Before changing the bundle identifier, data model, persistence behavior, or any 
 
 ## License
 
-This repository does not currently include a license file. Add a license before distributing the project as open source or accepting external contributions.
+Sleep Records is licensed under the [MIT License](LICENSE).
+
+You may use, modify, and distribute the software, including for commercial purposes, provided that the copyright and license notices are included in all copies or substantial portions of the software. See the license for the full terms and warranty disclaimer.
