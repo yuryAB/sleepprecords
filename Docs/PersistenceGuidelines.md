@@ -1,6 +1,6 @@
 # Local Persistence Guidelines
 
-Sleep Records currently treats user data as local, private, and device-owned. Any change that touches persistence must protect existing local records first and treat data movement, deletion, or schema changes as product decisions, not routine refactors.
+Sleepp Records currently treats user data as local, private, and device-owned. Any change that touches persistence must protect existing local records first and treat data movement, deletion, or schema changes as product decisions, not routine refactors.
 
 ## Current Baseline
 

@@ -264,13 +264,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sleep Records was built to give you a dedicated place where you can log every sleep-paralysis episode: date, sensations, emotions, and any hallucinations that may occur.\n\nBy logging your experiences, you can begin to notice patterns or triggers that might otherwise slip by, while keeping an organized history to share with healthcare professionals.\n\nThis app does not promise a cure, it is a self-knowledge tool designed to help you better understand what happens during these episodes."
+            "value" : "Sleepp Records was built to give you a dedicated place where you can log every sleep-paralysis episode: date, sensations, emotions, and any hallucinations that may occur.\n\nBy logging your experiences, you can begin to notice patterns or triggers that might otherwise slip by, while keeping an organized history to share with healthcare professionals.\n\nThis app does not promise a cure, it is a self-knowledge tool designed to help you better understand what happens during these episodes."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sleep Records foi criado com a finalidade de oferecer um lugar para você registrar cada episódio de paralisia do sono: data, sensações, emoções e até alucinações, se ocorrerem.\n\nAo anotar suas experiências, você pode identificar padrões ou gatilhos que passam despercebidos, além de manter um histórico organizado para compartilhar com profissionais de saúde.\n\nEste app não promete cura, mas funciona como uma ferramenta de autoconhecimento, ajudando você a entender melhor o que acontece durante esses episódios."
+            "value" : "Sleepp Records foi criado com a finalidade de oferecer um lugar para você registrar cada episódio de paralisia do sono: data, sensações, emoções e até alucinações, se ocorrerem.\n\nAo anotar suas experiências, você pode identificar padrões ou gatilhos que passam despercebidos, além de manter um histórico organizado para compartilhar com profissionais de saúde.\n\nEste app não promete cura, mas funciona como uma ferramenta de autoconhecimento, ajudando você a entender melhor o que acontece durante esses episódios."
           }
         }
       }
@@ -280,13 +280,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welcome to Sleep Records"
+            "value" : "Welcome to Sleepp Records"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bem-vindo ao Sleep Records"
+            "value" : "Bem-vindo ao Sleepp Records"
           }
         }
       }

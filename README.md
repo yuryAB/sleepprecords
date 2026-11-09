@@ -1,12 +1,12 @@
-# Sleep Records
+# Sleepp Records
 
-Sleep Records is an iOS app for logging sleep paralysis episodes. It gives people a structured place to record when an episode happened, what they experienced, how long the paralysis seemed to last, and any notes that may help identify patterns over time.
+Sleepp Records is an iOS app for logging sleep paralysis episodes. It gives people a structured place to record when an episode happened, what they experienced, how long the paralysis seemed to last, and any notes that may help identify patterns over time. The extra "p" in "Sleepp" stands for paralysis.
 
 The app is designed as a self-knowledge tool. It does not diagnose, treat, prevent, or cure any medical condition. Records can be useful as a personal history or as supporting context in conversations with qualified healthcare professionals.
 
 ## Project Purpose
 
-The purpose of Sleep Records is to encourage adoption among people who experience recurring sleep paralysis episodes. People who have a single isolated episode may not need a dedicated logging tool; the app is intended for those who experience this condition repeatedly and can benefit from recording patterns over time. By making it simple and respectful to record episodes, the project aims to help as many people with recurring episodes as possible use the app and, with explicit consent in future dataset features, contribute to a broader data foundation for research and studies about sleep paralysis.
+The purpose of Sleepp Records is to encourage adoption among people who experience recurring sleep paralysis episodes. People who have a single isolated episode may not need a dedicated logging tool; the app is intended for those who experience this condition repeatedly and can benefit from recording patterns over time. By making it simple and respectful to record episodes, the project aims to help as many people with recurring episodes as possible use the app and, with explicit consent in future dataset features, contribute to a broader data foundation for research and studies about sleep paralysis.
 
 ## Features
 
@@ -26,7 +26,7 @@ The purpose of Sleep Records is to encourage adoption among people who experienc
 
 ## Privacy and Data
 
-Sleep Records does not require an account and does not include a network service layer. Records are stored locally on the device through SwiftData.
+Sleepp Records does not require an account and does not include a network service layer. Records are stored locally on the device through SwiftData.
 
 The project may later include an optional dataset platform for sleep paralysis records. That future work is intended for users who choose to participate and explicitly agree to provide their information. It is not part of the current app behavior, and local records should not be shared by default.
 
@@ -108,4 +108,6 @@ Before changing the bundle identifier, data model, persistence behavior, or any 
 
 ## License
 
-This repository does not currently include a license file. Add a license before distributing the project as open source or accepting external contributions.
+Sleepp Records is licensed under the [MIT License](LICENSE).
+
+You may use, modify, and distribute the software, including for commercial purposes, provided that the copyright and license notices are included in all copies or substantial portions of the software. See the license for the full terms and warranty disclaimer.

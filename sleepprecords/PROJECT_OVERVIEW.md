@@ -4,13 +4,13 @@
 
 A paralisia do sono é uma condição que afeta milhões de pessoas ao redor do mundo. Durante um episódio, a pessoa acorda — ou está prestes a adormecer — e percebe que não consegue se mover nem falar, frequentemente acompanhada de alucinações visuais, auditivas e sensações corporais intensas. Apesar de ser relativamente comum, muitas pessoas vivem esses episódios de forma isolada, sem ferramentas adequadas para registrar o que sentiram, quando aconteceu ou em quais circunstâncias.
 
-O **Sleep Records** nasceu para preencher essa lacuna. A proposta é simples: oferecer um espaço dedicado para que o usuário registre cada episódio de paralisia do sono com detalhes — data, horário, sensações, emoções e alucinações — criando um histórico organizado que pode revelar padrões e gatilhos que, de outra forma, passariam despercebidos. Esse registro também pode ser compartilhado com profissionais de saúde para auxiliar em acompanhamentos clínicos.
+O **Sleepp Records** nasceu para preencher essa lacuna. A proposta é simples: oferecer um espaço dedicado para que o usuário registre cada episódio de paralisia do sono com detalhes — data, horário, sensações, emoções e alucinações — criando um histórico organizado que pode revelar padrões e gatilhos que, de outra forma, passariam despercebidos. Esse registro também pode ser compartilhado com profissionais de saúde para auxiliar em acompanhamentos clínicos.
 
 ---
 
 ## O que o app faz
 
-O Sleep Records permite ao usuário:
+O Sleepp Records permite ao usuário:
 
 - **Registrar episódios** de paralisia do sono com data, horário e nome personalizado
 - **Descrever experiências** vividas durante o episódio, escolhendo entre 27 tipos de sensações catalogadas (alucinações visuais, presença falsa, pânico, formigamento, distorção temporal, entre outras)
